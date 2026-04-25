@@ -1,4 +1,4 @@
-(require 'package)
+;;(require 'use-package)
 (add-to-list 'package-archives
 	     '("melpa" . "https://melpa.org/packages/") t)
 
@@ -11,7 +11,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages nil))
+ '(package-selected-packages
+   '(autothemer company dash f gruvbox-theme ht lsp-mode lv markdown-mode
+		s spinner)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

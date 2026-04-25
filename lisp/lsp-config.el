@@ -1,16 +1,14 @@
+;; 提前声明 markdown-mode，让 lsp-mode 能找到它
 (use-package lsp-mode
   :ensure t
-  :hook ((python-mode c++-mode rust-mode go-mode zig-mode) . lsp-deferred)
+  :hook ((python-mode c++-mode rust-mode go-mode zig-mode c-mode) . lsp-deferred)
   :commands lsp
   :init
-  (setq lsp-keymap-prefix "C-c l")) ;; 设置lsp-mode的快捷键前缀
+  (setq lsp-keymap-prefix "C-c L"))
 
 (use-package company
   :ensure t
-  :hook (after-init . global-company-mode))
-
-(add-hook 'c-mode-hook #'lsp-deferred)
-(add-hook 'c++-mode-hook #'lsp-deferred)
-(add-hook 'rust-mode-hook #'lsp-deferred)
+  :config
+  (global-company-mode 1))
 
 (provide 'lsp-config)
