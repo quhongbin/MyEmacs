@@ -1,6 +1,25 @@
+;;auto save config
+(auto-save-visited-mode t)
+
+;;set auto-save interval time is 5
+(setq auto-save-visited-interval 5)
+
+
+;;backup function
+(setq make-backup-files t)
+;; 自动保存后执行的钩子（可选）
+(add-hook 'auto-save-hook
+          (lambda () (message "Auto-saved at %s" (current-time-string))))
+;;backup files config
+(setq backup-directory-alist
+      '(("." . ,(expand-file-name "~/.emacs.d/backup/")))) ;;add backup files directory
+
+
 ;;auto complete symbols e.g single quote
 (electric-pair-mode 1)
-
+(setq electric-pair-pairs
+      '((?\< .?\>))
+      )
 ;; ------------------------------
 ;; termianl config
 ;; ------------------------------

@@ -3,6 +3,9 @@ eln-cache/
 elpa/
 *~
 /eaf
-/lisp
 /site-lisp/emacs-application-framework
 /url/cache/q/https/org/gnu/www
+/lisp/editor_BACKUP_5326.el
+/lisp/editor_BASE_5326.el
+/lisp/editor_LOCAL_5326.el
+/lisp/editor_REMOTE_5326.el
