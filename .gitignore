@@ -2,3 +2,7 @@ auto-save-list/
 eln-cache/
 elpa/
 *~
+/eaf
+/lisp
+/site-lisp/emacs-application-framework
+/url/cache/q/https/org/gnu/www
