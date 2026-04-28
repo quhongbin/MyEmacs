@@ -1,7 +1,8 @@
+(require 'package)
 (add-to-list 'package-archives
 	     '("melpa" . "https://melpa.org/packages/") t)
 
-(setq eaf-python-command "/opt/eaf-venv/bin/python3")
+(setq eaf-python-command "/usr/bin/python3")
 (add-to-list 'load-path "~/.emacs.d/site-lisp/emacs-application-framework/")
 (require 'eaf)
 (require 'eaf-mind-elixir)
@@ -45,9 +46,7 @@
      "e4a702e262c3e3501dfe25091621fe12cd63c7845221687e36a79e17cf3a67e0"
      "10e330880269244ae45ae9e02fe6f55766da9e15036e7c7f07d7ce228195deb5"
      default))
- '(package-selected-packages
-   '(company doom-themes gruvbox-theme lsp-mode modus-themes
-	     terminal-here vterm)))
+ '(package-selected-packages '(company doom-themes lsp-mode)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
