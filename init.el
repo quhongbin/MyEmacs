@@ -10,37 +10,61 @@
 ;;                         ("melpa"  . "https://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")))
 ;;
 (package-initialize)
-(setq eaf-python-command "/usr/bin/python3")
-(add-to-list 'load-path "~/.emacs.d/site-lisp/emacs-application-framework/")
-(require 'eaf)
-(require 'eaf-mind-elixir)
-(require 'eaf-music-player)
-(require 'eaf-rss-reader)
-(require 'eaf-terminal)
-(require 'eaf-vue-demo)
-(require 'eaf-vue-tailwindcss)
-(require 'eaf-mindmap)
-(require 'eaf-image-viewer)
-;;(require 'eaf-video-editor)
-(require 'eaf-video-player)
-(require 'eaf-org-previewer)
-(require 'eaf-markdown-previewer)
-(require 'eaf-jupyter)
-(require 'eaf-markmap)
-(require 'eaf-map)
-(require 'eaf-pdf-viewer)
-(require 'eaf-git)
-(require 'eaf-airshare)
-(require 'eaf-pyqterminal)
-(require 'eaf-system-monitor)
-(require 'eaf-file-manager)
-(require 'eaf-browser)
-(require 'eaf-file-sender)
 (add-to-list 'load-path "~/.emacs.d/lisp")
-(require 'editor)
-(require 'themes)
-(require 'lsp-config)
-(require 'org-config)
+(require 'init-editor)
+(require 'init-theme)
+(require 'init-lsp)
+(require 'init-org)
+
+;; 定义一个函数，专门用于配置图形界面元素
+(defun my-configure-gui-frame (frame)
+  "当新的图形 frame 被创建时，执行 EAF 等 GUI 配置。"
+  (when (display-graphic-p frame)
+    ;; 取消钩子，确保此配置只执行一次 (可选)
+    ;;(remove-hook 'after-make-frame-functions #'my-configure-gui-frame)
+    
+    ;; 在这里放入你所有的 EAF 和相关图形配置
+    (message "图形界面已创建，正在加载 EAF 和相关组件...")
+    
+    ;; 1. 加载 EAF 框架
+    (add-to-list 'load-path "~/.emacs.d/site-lisp/emacs-application-framework/")
+    (require 'eaf)
+    (require 'eaf-mind-elixir)
+    (require 'eaf-music-player)
+    (require 'eaf-rss-reader)
+    (require 'eaf-terminal)
+    (require 'eaf-vue-demo)
+    (require 'eaf-vue-tailwindcss)
+    (require 'eaf-mindmap)
+    (require 'eaf-image-viewer)
+    ;;(require 'eaf-video-editor)
+    (require 'eaf-video-player)
+    (require 'eaf-org-previewer)
+    (require 'eaf-markdown-previewer)
+    (require 'eaf-jupyter)
+    (require 'eaf-markmap)
+    (require 'eaf-map)
+    (require 'eaf-pdf-viewer)
+    (require 'eaf-git)
+    (require 'eaf-airshare)
+    (require 'eaf-pyqterminal)
+    (require 'eaf-system-monitor)
+    ;;(require 'eaf-file-manager)
+    (require 'eaf-browser)
+    (require 'eaf-file-sender)
+    ;; 2. 设置 EAF Python 命令 (如果需要，指定完整的 Python 路径)
+    (setq eaf-python-command "/usr/bin/python3")
+    ;; 3. 在这里加载其他任何依赖 GUI 的包，例如：
+    (require 'themes)
+    ;; (require 'all-the-icons)                   ;; 加载图标字体
+    ;; (set-face-attribute 'default nil :font "Inconsolata-12.5") ;; 设置字体
+    ;; (doom-modeline-mode 1)                    ;; 加载模型线
+    ))
+
+;; 将上面的函数添加到钩子中
+(add-hook 'after-make-frame-functions #'my-configure-gui-frame)
+
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -63,7 +87,9 @@
      "e4a702e262c3e3501dfe25091621fe12cd63c7845221687e36a79e17cf3a67e0"
      "10e330880269244ae45ae9e02fe6f55766da9e15036e7c7f07d7ce228195deb5"
      default))
- '(package-selected-packages '(company doom-themes htmlize lsp-mode terminal-here vterm)))
+ '(package-selected-packages
+   '(company doom-themes htmlize lsp-mode mermaid-mode ob-mermaid
+	     terminal-here vterm)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
