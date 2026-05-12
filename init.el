@@ -1,13 +1,13 @@
 (require 'package)
-(add-to-list 'package-archives
-	     '("melpa" . "https://melpa.org/packages/") t)
+;;(add-to-list 'package-archives
+;;	     '("melpa" . "https://melpa.org/packages/") t)
 ;;(setq package-archives '(("gnu"   . "http://1.15.88.122/gnu/")
 ;;                          ("melpa" . "http://1.15.88.122/melpa/")
 ;;			   ("nongnu" . "http://1.15.88.122/nongnu")))
-;;
-;;(setq package-archives '(("gnu"    . "https://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
-;;                         ("nongnu" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/nongnu/")
-;;                         ("melpa"  . "https://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")))
+
+(setq package-archives '(("gnu"    . "https://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
+                         ("nongnu" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/nongnu/")
+                         ("melpa"  . "https://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")))
 ;;
 (package-initialize)
 (add-to-list 'load-path "~/.emacs.d/lisp")
@@ -29,33 +29,25 @@
     ;; 1. 加载 EAF 框架
     (add-to-list 'load-path "~/.emacs.d/site-lisp/emacs-application-framework/")
     (require 'eaf)
-    (require 'eaf-mind-elixir)
-    (require 'eaf-music-player)
-    (require 'eaf-rss-reader)
-    (require 'eaf-terminal)
-    (require 'eaf-vue-demo)
-    (require 'eaf-vue-tailwindcss)
-    (require 'eaf-mindmap)
-    (require 'eaf-image-viewer)
-    ;;(require 'eaf-video-editor)
-    (require 'eaf-video-player)
-    (require 'eaf-org-previewer)
-    (require 'eaf-markdown-previewer)
-    (require 'eaf-jupyter)
-    (require 'eaf-markmap)
-    (require 'eaf-map)
-    (require 'eaf-pdf-viewer)
-    (require 'eaf-git)
-    (require 'eaf-airshare)
-    (require 'eaf-pyqterminal)
-    (require 'eaf-system-monitor)
-    ;;(require 'eaf-file-manager)
     (require 'eaf-browser)
-    (require 'eaf-file-sender)
+	(require 'eaf-pdf-viewer)
+	(require 'eaf-image-viewer)
+	(require 'eaf-markdown-previewer)
+	(require 'eaf-org-previewer)
+	(require 'eaf-mindmap)
+	(require 'eaf-mind-elixir)
+	(require 'eaf-system-monitor)
+	(require 'eaf-jupyter)
+	(require 'eaf-markmap)
+	(require 'eaf-map)
+	(require 'eaf-demo)
+	(require 'eaf-vue-demo)
+	(require 'eaf-vue-tailwindcss)
+	(require 'eaf-pyqterminal)
     ;; 2. 设置 EAF Python 命令 (如果需要，指定完整的 Python 路径)
-    (setq eaf-python-command "/usr/bin/python3")
+    ;;(setq eaf-python-command "/usr/bin/python3")
     ;; 3. 在这里加载其他任何依赖 GUI 的包，例如：
-    (require 'themes)
+    ;;(require 'themes)
     ;; (require 'all-the-icons)                   ;; 加载图标字体
     ;; (set-face-attribute 'default nil :font "Inconsolata-12.5") ;; 设置字体
     ;; (doom-modeline-mode 1)                    ;; 加载模型线
@@ -88,8 +80,8 @@
      "10e330880269244ae45ae9e02fe6f55766da9e15036e7c7f07d7ce228195deb5"
      default))
  '(package-selected-packages
-   '(company doom-themes htmlize lsp-mode mermaid-mode ob-mermaid
-	     terminal-here vterm)))
+   '(company doom-themes lsp-mode org-roam org-roam-ui terminal-here
+	     transient)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

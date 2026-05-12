@@ -5,9 +5,17 @@
 ;; ==============================================
 
 ;; ------------------------------
-;; 基础界面优化（不依赖外部包）
+;; org-roam mode configuration
 ;; ------------------------------ 
-
+(use-package org-roam
+  :ensure t
+  :custom
+  (org-roam-directory "~/org-roam")
+  :config
+  (org-roam-db-sync)
+  )
+(use-package org-roam-ui
+  :ensure t)
 
 ;; 符号美化（内置 prettify-symbols-mode）
 (add-hook 'org-mode-hook #'prettify-symbols-mode)
