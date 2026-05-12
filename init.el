@@ -17,33 +17,31 @@
 (require 'init-org)
 
 ;; 定义一个函数，专门用于配置图形界面元素
+;; 取消钩子，确保此配置只执行一次 (可选)
 (defun my-configure-gui-frame (frame)
-  "当新的图形 frame 被创建时，执行 EAF 等 GUI 配置。"
+  ;;(remove-hook 'after-make-frame-functions #'my-configure-gui-frame)
   (when (display-graphic-p frame)
-    ;; 取消钩子，确保此配置只执行一次 (可选)
-    ;;(remove-hook 'after-make-frame-functions #'my-configure-gui-frame)
-    
     ;; 在这里放入你所有的 EAF 和相关图形配置
     (message "图形界面已创建，正在加载 EAF 和相关组件...")
-    
+
     ;; 1. 加载 EAF 框架
     (add-to-list 'load-path "~/.emacs.d/site-lisp/emacs-application-framework/")
     (require 'eaf)
     (require 'eaf-browser)
-	(require 'eaf-pdf-viewer)
-	(require 'eaf-image-viewer)
-	(require 'eaf-markdown-previewer)
-	(require 'eaf-org-previewer)
-	(require 'eaf-mindmap)
-	(require 'eaf-mind-elixir)
-	(require 'eaf-system-monitor)
-	(require 'eaf-jupyter)
-	(require 'eaf-markmap)
-	(require 'eaf-map)
-	(require 'eaf-demo)
-	(require 'eaf-vue-demo)
-	(require 'eaf-vue-tailwindcss)
-	(require 'eaf-pyqterminal)
+    (require 'eaf-pdf-viewer)
+    (require 'eaf-image-viewer)
+    (require 'eaf-markdown-previewer)
+    (require 'eaf-org-previewer)
+    (require 'eaf-mindmap)
+    (require 'eaf-mind-elixir)
+    (require 'eaf-system-monitor)
+    (require 'eaf-jupyter)
+    (require 'eaf-markmap)
+    (require 'eaf-map)
+    (require 'eaf-demo)
+    (require 'eaf-vue-demo)
+    (require 'eaf-vue-tailwindcss)
+    (require 'eaf-pyqterminal)
     ;; 2. 设置 EAF Python 命令 (如果需要，指定完整的 Python 路径)
     ;;(setq eaf-python-command "/usr/bin/python3")
     ;; 3. 在这里加载其他任何依赖 GUI 的包，例如：
@@ -51,7 +49,7 @@
     ;; (require 'all-the-icons)                   ;; 加载图标字体
     ;; (set-face-attribute 'default nil :font "Inconsolata-12.5") ;; 设置字体
     ;; (doom-modeline-mode 1)                    ;; 加载模型线
-    ))
+))
 
 ;; 将上面的函数添加到钩子中
 (add-hook 'after-make-frame-functions #'my-configure-gui-frame)
@@ -64,7 +62,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("8d3ef5ff6273f2a552152c7febc40eabca26bae05bd12bc85062e2dc224cde9a"
+   '("088cd6f894494ac3d4ff67b794467c2aa1e3713453805b93a8bcb2d72a0d1b53"
+     "d97ac0baa0b67be4f7523795621ea5096939a47e8b46378f79e78846e0e4ad3d"
+     "8d3ef5ff6273f2a552152c7febc40eabca26bae05bd12bc85062e2dc224cde9a"
      "d12b1d9b0498280f60e5ec92e5ecec4b5db5370d05e787bc7cc49eae6fb07bc0"
      "b754d3a03c34cfba9ad7991380d26984ebd0761925773530e24d8dd8b6894738"
      "4594d6b9753691142f02e67b8eb0fda7d12f6cc9f1299a49b819312d6addad1d"
@@ -80,8 +80,10 @@
      "10e330880269244ae45ae9e02fe6f55766da9e15036e7c7f07d7ce228195deb5"
      default))
  '(package-selected-packages
-   '(company doom-themes lsp-mode org-roam org-roam-ui terminal-here
-	     transient)))
+   '(company doom-themes haskell-mode lsp-haskell lsp-mode lsp-ui
+	     markdown-mode move-text org-preview-html org-roam
+	     org-roam-ui ox-hugo terminal-here transient treemacs
+	     vterm)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
