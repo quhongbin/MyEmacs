@@ -5,9 +5,22 @@
 ;; ==============================================
 
 ;; ------------------------------
-;; 基础界面优化（不依赖外部包）
+;; org-roam configration
 ;; ------------------------------ 
+(use-package org-roam
+  :ensure t
+  :init
+  (setq org-roam-v2-ack t)
+  :config
+  (org-roam-setup))
 
+(use-package org-roam-ui
+  :ensure t
+  :after org-roam
+  :config
+  (setq org-roam-ui-sync-theme t
+	org-roam-ui-follow t
+	org-roam-ui-update-on-save t))
 
 ;; 符号美化（内置 prettify-symbols-mode）
 (add-hook 'org-mode-hook #'prettify-symbols-mode)

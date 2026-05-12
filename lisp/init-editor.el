@@ -1,4 +1,11 @@
 (require 'init-func)
+;;move selected block
+(use-package move-text
+  :ensure t
+  :bind
+  (("M-p" . move-text-up)
+   ("M-n" . move-text-down)))
+
 ;;auto save config
 (auto-save-visited-mode t)
 
@@ -34,7 +41,7 @@
       :ensure t
       :config
       (setq vter-shell "/bin/zsh")
-      (global-set-key (kbd "C-x t") #'open-terminal-assembly))
+      (global-set-key (kbd "C-x t") #'vterm))
   
   (message "libvterm is not exist"))
 
@@ -42,7 +49,7 @@
 (use-package terminal-here
   :ensure t
   :config
-  (global-set-key (kbd "C-x T") #'open-terminal-outside-shell))
+  (global-set-key (kbd "C-x T") #'terminal-here))
 
 ;;turn on which key
 (use-package which-key
