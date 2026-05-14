@@ -80,10 +80,9 @@
      "10e330880269244ae45ae9e02fe6f55766da9e15036e7c7f07d7ce228195deb5"
      default))
  '(package-selected-packages
-   '(company doom-themes haskell-mode lsp-haskell lsp-mode lsp-ui
-	     markdown-mode move-text org-preview-html org-roam
-	     org-roam-ui ox-hugo terminal-here transient treemacs
-	     vterm)))
+   '(company doom-themes haskell-mode lsp-ui move-text org-roam-ui
+	     terminal-here transient treemacs vterm))
+ '(safe-local-variable-directories '("/home/xiaoqu/CPP_LEARNING/")))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

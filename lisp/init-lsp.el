@@ -1,6 +1,6 @@
 (use-package haskell-mode
   :ensure t)
-(use-package lsp-haskell)
+;;(use-package lsp-haskell)
 ;; 提前声明 markdown-mode，让 lsp-mode 能找到它
 (use-package lsp-mode
   :ensure t
