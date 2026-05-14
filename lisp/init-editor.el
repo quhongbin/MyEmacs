@@ -60,4 +60,6 @@
   (which-key-mode 1)
   (setq which-key-idle-delay 0.1))
 
+(add-to-list 'load-path "./editor-packages/")
+(require 'treemacs)
 (provide 'init-editor)
