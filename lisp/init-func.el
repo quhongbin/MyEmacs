@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t; -*-
 ;;---------------------------
 ;;ensure program have been installed in PATH which is system environmental varible
 ;;---------------------------

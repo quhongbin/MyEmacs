@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t; -*-
 (require 'init-func)
 ;;move selected block
 (use-package move-text
@@ -20,7 +21,7 @@
           (lambda () (message "Auto-saved at %s" (current-time-string))))
 ;;backup files config
 (setq backup-directory-alist
-      '(("." . ,(expand-file-name "~/.emacs.d/backup/")))) ;;add backup files directory
+      `(("." . ,(expand-file-name "~/.emacs.d/backup/")))) ;;add backup files directory
 
 
 ;;auto complete symbols e.g single quote

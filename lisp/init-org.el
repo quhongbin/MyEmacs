@@ -1,8 +1,37 @@
+;;; -*- lexical-binding: t; -*-
 (require 'use-package)
 ;; ==============================================
 ;; Org 渲染 & 美化 独立配置（优化版）
 ;; 依赖：org-modern, emacs 内置 org
 ;; ==============================================
+;; org preview
+(use-package org-preview-html
+  :ensure t
+  :config
+  (setq org-preview-html-refresh-configuration 'save
+	;;org-preview-html-timer-interval 2
+	org-preview-html-viewer 'xwidget))
+;;  (setq browse-url-browser-function 'browse-url-generic
+;;	browse-url-generic-program "google-chrome-stable"))
+
+;; 行内实时渲染 Org（所见即所得）
+(use-package org-appear
+  :ensure t
+  :hook (org-mode . org-appear-mode)
+  :config
+  ;; 自动渲染：加粗、斜体、下划线、删除线、链接、图片、公式
+  (setq org-appear-autolinks t)
+  (setq org-appear-autosubmarkers t)
+  (setq org-appear-autoemphasis t)
+  (setq org-appear-autotags t)
+
+  ;; 公式行内渲染（光标离开就显示）
+  (setq org-preview-latex-default-density 2.0)
+  (setq org-startup-with-latex-preview t)
+
+  ;; 标题缩进美化
+  ;;(setq org-startup-indented t)
+  (setq org-hide-emphasis-markers t)) ; 隐藏 * = / 等标记
 
 ;; ------------------------------
 ;; org-roam configration
@@ -47,6 +76,19 @@
 ;; org template
 ;; ------------------------------
 (require 'org-tempo)
+
+
+;; ------------------------------
+;; org 
+;; ------------------------------
+(setq org-src-fontify-natively t)
+(setq org-src-tab-acts-natively t)
+;;(setq org-src-block-faces '#777777)
+
+(add-hook 'org-mode-hook 'variable-pitch-mode)
+(add-hook 'org-mode-hook (lambda () (face-remap-add-relative 'fixed-pitch :family "JetBrains Mono")))
+;; 代码块保持等宽
+
 
 ;; ------------------------------
 ;; 自定义 TODO 状态与配色

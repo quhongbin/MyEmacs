@@ -1,13 +1,14 @@
+;;; -*- lexical-binding: t; -*-
 (require 'package)
-;;(add-to-list 'package-archives
-;;	     '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives
+	     '("melpa" . "https://melpa.org/packages/") t)
 ;;(setq package-archives '(("gnu"   . "http://1.15.88.122/gnu/")
 ;;                          ("melpa" . "http://1.15.88.122/melpa/")
 ;;			   ("nongnu" . "http://1.15.88.122/nongnu")))
 
-(setq package-archives '(("gnu"    . "https://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
-                         ("nongnu" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/nongnu/")
-                         ("melpa"  . "https://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")))
+;;(setq package-archives '(("gnu"    . "https://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
+;;                         ("nongnu" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/nongnu/")
+;;                         ("melpa"  . "https://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")))
 ;;
 (package-initialize)
 (add-to-list 'load-path "~/.emacs.d/lisp")
@@ -16,44 +17,37 @@
 (require 'init-lsp)
 (require 'init-org)
 
-;; 定义一个函数，专门用于配置图形界面元素
-;; 取消钩子，确保此配置只执行一次 (可选)
-(defun my-configure-gui-frame (frame)
-  ;;(remove-hook 'after-make-frame-functions #'my-configure-gui-frame)
-  (when (display-graphic-p frame)
-    ;; 在这里放入你所有的 EAF 和相关图形配置
-    (message "图形界面已创建，正在加载 EAF 和相关组件...")
+;; gemini ai generator
+;; 定义一个标志位，防止重复加载
+(defvar my-gui-packages-loaded-p nil)
 
-    ;; 1. 加载 EAF 框架
+(defun my-setup-gui-plugins (&optional frame)
+  "配置仅在图形界面下运行的插件，如 EAF"
+  ;; 只有在是图形界面且尚未加载过时才执行
+  (when (and (display-graphic-p frame)
+             (not my-gui-packages-loaded-p))
+    
+    (message "检测到图形界面，正在加载 EAF 及 GUI 组件...")
+
+    ;; --- EAF 配置开始 ---
     (add-to-list 'load-path "~/.emacs.d/site-lisp/emacs-application-framework/")
     (require 'eaf)
-    (require 'eaf-browser)
-    (require 'eaf-pdf-viewer)
-    (require 'eaf-image-viewer)
-    (require 'eaf-markdown-previewer)
-    (require 'eaf-org-previewer)
-    (require 'eaf-mindmap)
-    (require 'eaf-mind-elixir)
-    (require 'eaf-system-monitor)
-    (require 'eaf-jupyter)
-    (require 'eaf-markmap)
-    (require 'eaf-map)
-    (require 'eaf-demo)
-    (require 'eaf-vue-demo)
-    (require 'eaf-vue-tailwindcss)
-    (require 'eaf-pyqterminal)
-    ;; 2. 设置 EAF Python 命令 (如果需要，指定完整的 Python 路径)
-    ;;(setq eaf-python-command "/usr/bin/python3")
-    ;; 3. 在这里加载其他任何依赖 GUI 的包，例如：
-    ;;(require 'themes)
-    ;; (require 'all-the-icons)                   ;; 加载图标字体
-    ;; (set-face-attribute 'default nil :font "Inconsolata-12.5") ;; 设置字体
-    ;; (doom-modeline-mode 1)                    ;; 加载模型线
-))
+    ;; 建议使用这种方式批量加载，更简洁
+    (dolist (app '(browser pdf-viewer image-viewer markdown-previewer 
+                   org-previewer mindmap jupyter terminal))
+      (require (intern (format "eaf-%s" app)) nil t))
+    ;; --- EAF 配置结束 ---
 
-;; 将上面的函数添加到钩子中
-(add-hook 'after-make-frame-functions #'my-configure-gui-frame)
+    ;; 设置标志位，确保即使开启多个 Client 也不会重新 require
+    (setq my-gui-packages-loaded-p t)))
 
+;; 场景 1: 处理正常启动 (emacs ~/test)
+(if (daemonp)
+    ;; 场景 2: 处理 daemon 模式下的 client 连接
+    (add-hook 'after-make-frame-functions #'my-setup-gui-plugins)
+  ;; 如果不是 daemon，直接在界面初始化完成后加载
+  (add-hook 'window-setup-hook #'my-setup-gui-plugins))
+;;gemini ai generator
 
 
 (custom-set-variables
@@ -62,27 +56,14 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("088cd6f894494ac3d4ff67b794467c2aa1e3713453805b93a8bcb2d72a0d1b53"
-     "d97ac0baa0b67be4f7523795621ea5096939a47e8b46378f79e78846e0e4ad3d"
-     "8d3ef5ff6273f2a552152c7febc40eabca26bae05bd12bc85062e2dc224cde9a"
-     "d12b1d9b0498280f60e5ec92e5ecec4b5db5370d05e787bc7cc49eae6fb07bc0"
-     "b754d3a03c34cfba9ad7991380d26984ebd0761925773530e24d8dd8b6894738"
-     "4594d6b9753691142f02e67b8eb0fda7d12f6cc9f1299a49b819312d6addad1d"
-     "4d5d11bfef87416d85673947e3ca3d3d5d985ad57b02a7bb2e32beaf785a100e"
-     "3613617b9953c22fe46ef2b593a2e5bc79ef3cc88770602e7e569bbd71de113b"
-     "d481904809c509641a1a1f1b1eb80b94c58c210145effc2631c1a7f2e4a2fdf4"
-     "9b9d7a851a8e26f294e778e02c8df25c8a3b15170e6f9fd6965ac5f2544ef2a9"
-     "5c7720c63b729140ed88cf35413f36c728ab7c70f8cd8422d9ee1cedeb618de5"
-     "b7a09eb77a1e9b98cafba8ef1bd58871f91958538f6671b22976ea38c2580755"
-     "f1e8339b04aef8f145dd4782d03499d9d716fdc0361319411ac2efc603249326"
-     "0325a6b5eea7e5febae709dab35ec8648908af12cf2d2b569bedc8da0a3a81c1"
-     "e4a702e262c3e3501dfe25091621fe12cd63c7845221687e36a79e17cf3a67e0"
-     "10e330880269244ae45ae9e02fe6f55766da9e15036e7c7f07d7ce228195deb5"
-     default))
+   '("51fa6edfd6c8a4defc2681e4c438caf24908854c12ea12a1fbfd4d055a9647a3" default))
  '(package-selected-packages
-   '(company doom-themes haskell-mode lsp-ui move-text org-roam-ui
-	     terminal-here transient treemacs vterm))
- '(safe-local-variable-directories '("/home/xiaoqu/CPP_LEARNING/")))
+   '(gruvbox-theme obsidian pandoc transient-extras company doom-themes haskell-mode lsp-haskell lsp-mode lsp-ui markdown-mode move-text org-preview-html org-roam org-roam-ui ox-hugo terminal-here transient treemacs vterm))
+ '(safe-local-variable-values
+   '((org-roam-db-location . "~/Obsidian/CPP_LEARNING/.org-roam.db")
+     (org-roam-directory . "~/Obsidian/CPP_LEARNING/")
+     (org-roam-db-location . "~/CPP_LEARNING/.org-roam.db")
+     (org-roam-directory . "~/CPP_LEARNING"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
