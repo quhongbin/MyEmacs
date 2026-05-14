@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t; -*-
 (require 'init-func)
 ;;move selected block
 (use-package move-text
