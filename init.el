@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t; -*-
 (require 'package)
 (add-to-list 'package-archives
 	     '("melpa" . "https://melpa.org/packages/") t)
@@ -16,44 +17,38 @@
 (require 'init-lsp)
 (require 'init-org)
 
-;; 定义一个函数，专门用于配置图形界面元素
-;; 取消钩子，确保此配置只执行一次 (可选)
-(defun my-configure-gui-frame (frame)
-  ;;(remove-hook 'after-make-frame-functions #'my-configure-gui-frame)
-  (when (display-graphic-p frame)
-    ;; 在这里放入你所有的 EAF 和相关图形配置
-    (message "图形界面已创建，正在加载 EAF 和相关组件...")
 
-    ;; 1. 加载 EAF 框架
+;; gemini ai generator
+;; 定义一个标志位，防止重复加载
+(defvar my-gui-packages-loaded-p nil)
+
+(defun my-setup-gui-plugins (&optional frame)
+  "配置仅在图形界面下运行的插件，如 EAF"
+  ;; 只有在是图形界面且尚未加载过时才执行
+  (when (and (display-graphic-p frame)
+             (not my-gui-packages-loaded-p))
+    
+    (message "检测到图形界面，正在加载 EAF 及 GUI 组件...")
+
+    ;; --- EAF 配置开始 ---
     (add-to-list 'load-path "~/.emacs.d/site-lisp/emacs-application-framework/")
     (require 'eaf)
-    (require 'eaf-browser)
-    (require 'eaf-pdf-viewer)
-    (require 'eaf-image-viewer)
-    (require 'eaf-markdown-previewer)
-    (require 'eaf-org-previewer)
-    (require 'eaf-mindmap)
-    (require 'eaf-mind-elixir)
-    (require 'eaf-system-monitor)
-    (require 'eaf-jupyter)
-    (require 'eaf-markmap)
-    (require 'eaf-map)
-    (require 'eaf-demo)
-    (require 'eaf-vue-demo)
-    (require 'eaf-vue-tailwindcss)
-    (require 'eaf-pyqterminal)
-    ;; 2. 设置 EAF Python 命令 (如果需要，指定完整的 Python 路径)
-    ;;(setq eaf-python-command "/usr/bin/python3")
-    ;; 3. 在这里加载其他任何依赖 GUI 的包，例如：
-    ;;(require 'themes)
-    ;; (require 'all-the-icons)                   ;; 加载图标字体
-    ;; (set-face-attribute 'default nil :font "Inconsolata-12.5") ;; 设置字体
-    ;; (doom-modeline-mode 1)                    ;; 加载模型线
-))
+    ;; 建议使用这种方式批量加载，更简洁
+    (dolist (app '(browser pdf-viewer image-viewer markdown-previewer 
+                   org-previewer mindmap jupyter terminal))
+      (require (intern (format "eaf-%s" app)) nil t))
+    ;; --- EAF 配置结束 ---
 
-;; 将上面的函数添加到钩子中
-(add-hook 'after-make-frame-functions #'my-configure-gui-frame)
+    ;; 设置标志位，确保即使开启多个 Client 也不会重新 require
+    (setq my-gui-packages-loaded-p t)))
 
+;; 场景 1: 处理正常启动 (emacs ~/test)
+(if (daemonp)
+    ;; 场景 2: 处理 daemon 模式下的 client 连接
+    (add-hook 'after-make-frame-functions #'my-setup-gui-plugins)
+  ;; 如果不是 daemon，直接在界面初始化完成后加载
+  (add-hook 'window-setup-hook #'my-setup-gui-plugins))
+;;gemini ai generator
 
 
 (custom-set-variables
