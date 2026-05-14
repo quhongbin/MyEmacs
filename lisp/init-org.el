@@ -33,8 +33,6 @@
   ;;(setq org-startup-indented t)
   (setq org-hide-emphasis-markers t)) ; 隐藏 * = / 等标记
 
-
-
 ;; ------------------------------
 ;; org-roam configration
 ;; ------------------------------ 
@@ -78,6 +76,19 @@
 ;; org template
 ;; ------------------------------
 (require 'org-tempo)
+
+
+;; ------------------------------
+;; org 
+;; ------------------------------
+(setq org-src-fontify-natively t)
+(setq org-src-tab-acts-natively t)
+;;(setq org-src-block-faces '#777777)
+
+(add-hook 'org-mode-hook 'variable-pitch-mode)
+(add-hook 'org-mode-hook (lambda () (face-remap-add-relative 'fixed-pitch :family "JetBrains Mono")))
+;; 代码块保持等宽
+
 
 ;; ------------------------------
 ;; 自定义 TODO 状态与配色
