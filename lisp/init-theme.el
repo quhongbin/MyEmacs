@@ -6,8 +6,14 @@
      (load-theme 'doom-gruvbox t)
   (use-package doom-themes
     :ensure t
-    :config
-    (load-theme 'doom-gruvbox t))
-  )
+;;    :config
+;;    (load-theme 'doom-gruvbox t))
+  ))
+
+(use-package gruvbox-theme
+  :ensure t
+  :config
+  (load-theme 'gruvbox-dark-soft t))
+
 ;;load themes
 (provide 'init-theme)
