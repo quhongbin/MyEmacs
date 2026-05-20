@@ -1,5 +1,12 @@
 ;;; -*- lexical-binding: t; -*-
 (require 'use-package)
+;; ==========================
+(org-babel-do-load-languages 'org-babel-load-languages
+			     '((C . t)
+			       (python . t)))
+
+
+
 ;; ==============================================
 ;; Org 渲染 & 美化 独立配置（优化版）
 ;; 依赖：org-modern, emacs 内置 org
@@ -53,12 +60,6 @@
 
 ;; 符号美化（内置 prettify-symbols-mode）
 (add-hook 'org-mode-hook #'prettify-symbols-mode)
-(add-hook 'org-mode-hook
-	  (lambda()
-	    (setq-local prettify-symbols-alist
-			'(("#+begin_src" . ">")
-			  ("#+end_src" . ">")))
-	    (prettify-symbols-mode 1)))
 
 ;; ------------------------------
 ;; mermaid

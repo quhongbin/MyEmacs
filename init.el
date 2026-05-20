@@ -56,11 +56,12 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("51fa6edfd6c8a4defc2681e4c438caf24908854c12ea12a1fbfd4d055a9647a3" default))
- '(package-selected-packages
-   '(gruvbox-theme obsidian pandoc transient-extras company doom-themes haskell-mode lsp-haskell lsp-mode lsp-ui markdown-mode move-text org-preview-html org-roam org-roam-ui ox-hugo terminal-here transient treemacs vterm))
+   '("51fa6edfd6c8a4defc2681e4c438caf24908854c12ea12a1fbfd4d055a9647a3"
+     default))
+ '(package-selected-packages nil)
  '(safe-local-variable-values
-   '((org-roam-db-location . "~/Obsidian/CPP_LEARNING/.org-roam.db")
+   '((org-roam-directory . "~/CPP_LEARNING/")
+     (org-roam-db-location . "~/Obsidian/CPP_LEARNING/.org-roam.db")
      (org-roam-directory . "~/Obsidian/CPP_LEARNING/")
      (org-roam-db-location . "~/CPP_LEARNING/.org-roam.db")
      (org-roam-directory . "~/CPP_LEARNING"))))
