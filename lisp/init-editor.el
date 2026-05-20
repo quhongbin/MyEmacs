@@ -7,7 +7,9 @@
   (("M-p" . move-text-up)
    ("M-n" . move-text-down)))
 
+;;----------------
 ;;auto save config
+;;----------------
 (auto-save-visited-mode t)
 
 ;;set auto-save interval time is 5
@@ -16,6 +18,9 @@
 ;;set font family
 (set-frame-font "JetBrainsMono Nerd Font Mono")
 
+;; ------------------------------
+;; auto backup config
+;; ------------------------------
 ;;backup function
 (setq make-backup-files t)
 ;; 自动保存后执行的钩子（可选）

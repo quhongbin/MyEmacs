@@ -27,11 +27,16 @@
 
   ;; 公式行内渲染（光标离开就显示）
   (setq org-preview-latex-default-density 2.0)
-  (setq org-startup-with-latex-preview t)
+;;  (setq org-startup-with-latex-preview t)
 
   ;; 标题缩进美化
   ;;(setq org-startup-indented t)
   (setq org-hide-emphasis-markers t)) ; 隐藏 * = / 等标记
+
+;; ------------------------------
+;; yank-media configuration
+;; ------------------------------
+
 
 ;; ------------------------------
 ;; org-roam configration
@@ -116,14 +121,14 @@
 ;; ------------------------------
 ;; 图片 & LaTeX 公式实时预览
 ;; ------------------------------
-(setq org-startup-with-inline-images t
-      org-image-actual-width 650
-      org-image-max-width 900)
+;;(setq org-startup-with-inline-images t
+;;      org-image-actual-width 650
+;;      org-image-max-width 900)
 
 ;; LaTeX 高清矢量预览
-(setq org-startup-with-latex-preview t
-      org-latex-preview-default-scale 1.3
-      org-latex-preview-dvisvgm-extra-args '("-b" "white"))
+;;(setq org-startup-with-latex-preview t
+;;      org-latex-preview-default-scale 1.3
+;;      org-latex-preview-dvisvgm-extra-args '("-b" "white"))
 
 ;; ------------------------------
 ;; 导出优化
@@ -134,14 +139,63 @@
 ;;<style>
 ;;.markdown-body { max-width: 920px; margin: 0 auto; padding: 2rem; }
 ;;</style>")
-(setq org-html-htmlize-output-type 'css)
+;;(setq org-html-htmlize-output-type 'css)
 
 ;; PDF 用 XeLaTeX 编译（中文支持）
-(setq org-latex-pdf-process
-      '("xelatex -interaction nonstopmode %f"
-        "xelatex -interaction nonstopmode %f"))
+;;(setq org-latex-pdf-process
+;;      '("xelatex -interaction nonstopmode %f"
+;;        "xelatex -interaction nonstopmode %f"))
 
-;; ------------------------------
+;; ==============================================
+;; 让 Org 模式拥有完整、漂亮的语法高亮
+;; ==============================================
+
+;;;; 1. 开启代码块原生语法高亮（必须）
+;;(setq org-src-fontify-natively t)
+;;
+;;;; 2. 开启 Org 模式自身的全部语法高亮（标题、列表、链接、表格等）
+;;;;(setq org-highlight-latex-and-related '(native script entities))
+;;(setq org-fontify-done-headline t)      ; 已完成任务高亮
+;;(setq org-fontify-quote-and-verse-blocks t) ; 引用块高亮
+;;(setq org-fontify-whole-heading-line t)  ; 整行标题高亮
+;;(setq org-hide-emphasis-markers t)      ; 隐藏 * / = 标记，只显示高亮效果
+;;
+;;;; 3. 表格、链接、标签高亮增强
+;;(setq org-table-fontify-face t)
+;;(setq org-link-fontify-middle t)
+;;
+;;;; 4. 标题层级自动上色（1级~8级标题不同颜色）
+;;(custom-set-faces
+;; '(org-level-1 ((t (:inherit bold :foreground "#ff6b6b" :height 1.3))))
+;; '(org-level-2 ((t (:inherit bold :foreground "#4ecdc4" :height 1.2))))
+;; '(org-level-3 ((t (:inherit bold :foreground "#45b7d1" :height 1.1))))
+;; '(org-level-4 ((t (:inherit bold :foreground "#96ceb4" :height 1.0))))
+;; '(org-level-5 ((t (:inherit bold :foreground "#feca57" :height 1.0))))
+;; '(org-level-6 ((t (:inherit bold :foreground "#ff9ff3" :height 1.0))))
+;; '(org-level-7 ((t (:inherit bold :foreground "#a29bfe" :height 1.0))))
+;; '(org-level-8 ((t (:inherit bold :foreground "#fd79a8" :height 1.0))))
+;;
+;; ;; 代码块背景高亮
+;; '(org-block ((t (:background "#f9f9f9" :inherit fixed-pitch))))
+;; '(org-code ((t (:foreground "#d63031" :weight bold))))
+;;
+;; ;; 链接高亮
+;; '(org-link ((t (:foreground "#0984e3" :underline t))))
+;;
+;; ;; 表格高亮
+;; '(org-table ((t (:foreground "#2d3436" :background "#f8f9fa"))))
+;;
+;; ;; TODO / 关键字高亮
+;; '(org-todo ((t (:foreground "#e17055" :weight bold))))
+;; '(org-done ((t (:foreground "#00b894" :weight bold))))
+;;
+;; ;; 标签高亮
+;; '(org-tag ((t (:foreground "#555" :background "#eee" :box t :height 0.9))))
+;; )
+;;
+;;;; 5. 自动换行，更像现代编辑器
+;;(add-hook 'org-mode-hook (lambda () (visual-line-mode 1)))
+;;;; ------------------------------
 ;; 配置提供
 ;; ------------------------------
 (provide 'init-org)
