@@ -76,9 +76,9 @@
      default))
  '(package-selected-packages
    '(company doom-themes grip-mode haskell-mode impatient-mode
-	     lsp-haskell lsp-ui move-text org-appear org-download
-	     org-preview-html org-roam-ui ox-hugo pandoc-mode
-	     terminal-here transient treemacs vterm))
+	     lsp-haskell lsp-ui magit move-text org-appear
+	     org-download org-preview-html org-roam-ui ox-hugo
+	     pandoc-mode terminal-here transient treemacs vterm))
  '(safe-local-variable-directories '("/home/dev/Obsidian/CPP_LEARNING/")))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

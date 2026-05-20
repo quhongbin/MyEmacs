@@ -13,6 +13,8 @@
 ;;set auto-save interval time is 5
 (setq auto-save-visited-interval 5)
 
+;;set font family
+(set-frame-font "JetBrainsMono Nerd Font Mono")
 
 ;;backup function
 (setq make-backup-files t)
