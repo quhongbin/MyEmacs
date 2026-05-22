@@ -18,6 +18,14 @@
 ;;set font family
 (set-frame-font "JetBrainsMono Nerd Font Mono")
 
+;;----------------
+;;fixed margins
+;;----------------
+(setq scroll-margin 10)
+(with-eval-after-load 'vterm
+  (add-hook 'vterm-mode-hook (lambda()(setq-local scroll-margin 0))))
+
+
 ;; ------------------------------
 ;; auto backup config
 ;; ------------------------------
@@ -69,4 +77,5 @@
 
 (add-to-list 'load-path "./editor-packages/")
 (require 'treemacs)
+(require 'yasnippet)
 (provide 'init-editor)
