@@ -41,10 +41,15 @@
   (setq org-hide-emphasis-markers t)) ; 隐藏 * = / 等标记
 
 ;; ------------------------------
-;; yank-media configuration
+;; ox-hugo configuratio n
 ;; ------------------------------
-
-
+(use-package ox-hugo
+  :ensure t
+  :after ox
+  :config
+  ;; 可选：如果你希望全局所有 Org-Hugo 文件都在保存时自动导出
+  ;; (add-hook 'org-mode-hook #'org-hugo-auto-export-mode)
+  )
 ;; ------------------------------
 ;; org-roam configration
 ;; ------------------------------ 
