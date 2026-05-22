@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: DataStruct
+# key: DataStruct
+# --
+
+
+#+title: ${1:DS}
+#+author: Hongbin Qu
+#+date: ${2}
+
+* $1
+
