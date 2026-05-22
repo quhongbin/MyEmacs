@@ -66,7 +66,7 @@
 	    (prettify-symbols-mode 1)))
 
 ;; ------------------------------
-;; mermaid
+;; org-babel
 ;; -----------------------------
 ;;(use-package mermaid-mode
 ;;  :ensure t)
@@ -76,7 +76,12 @@
 ;;  (org-babel-do-load-languages
 ;;   'org-babel-load-languages
 ;;   '((mermaid . t))))
-;;
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((C . t)))
+
+
+
 ;; ------------------------------
 ;; org template
 ;; ------------------------------

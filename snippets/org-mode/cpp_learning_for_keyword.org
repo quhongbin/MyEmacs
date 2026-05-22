@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: CPP_LEARNING_FOR_KEYWORD
+# key: CPP_KEYWORD
+# --
+
+#+title: ${1:CPP_LEARNING_FOR_KEYWORD}
+#+author: ${2:Hongbin Qu}
+#+date: ${3:}
+
+* ${4:headline}
+
+#+begin_quote
+This word is supplied for ${5:C++11} standard
+#+end_quote
+
+$0
