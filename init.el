@@ -28,14 +28,20 @@
 ;;             (not my-gui-packages-loaded-p))
 ;;    
 ;;    (message "检测到图形界面，正在加载 EAF 及 GUI 组件...")
-;;
+
 ;;    ;; --- EAF 配置开始 ---
-;;    (add-to-list 'load-path "~/.emacs.d/site-lisp/emacs-application-framework/")
-;;    (require 'eaf)
-;;    ;; 建议使用这种方式批量加载，更简洁
-;;    (dolist (app '(browser pdf-viewer image-viewer markdown-previewer 
-;;                   org-previewer mindmap jupyter terminal))
-;;      (require (intern (format "eaf-%s" app)) nil t))
+    (add-to-list 'load-path "~/.emacs.d/site-lisp/emacs-application-framework/")
+(require 'eaf)
+(require 'eaf-browser)
+(require 'eaf-pdf-viewer)
+(require 'eaf-image-viewer)
+(require 'eaf-terminal)
+(require 'eaf-markdown-previewer)
+(require 'eaf-org-previewer)
+(require 'eaf-mindmap)
+(require 'eaf-jupyter)
+(require 'eaf-pyqterminal)
+
 ;;    ;; --- EAF 配置结束 ---
 ;;
 ;;    ;; 设置标志位，确保即使开启多个 Client 也不会重新 require
@@ -58,7 +64,12 @@
  '(custom-safe-themes
    '("51fa6edfd6c8a4defc2681e4c438caf24908854c12ea12a1fbfd4d055a9647a3"
      default))
- '(package-selected-packages nil)
+ '(package-selected-packages
+   '(company consult consult-lsp doom-themes grip-mode gruvbox-theme
+	     haskell-mode htmlize impatient-mode lsp-haskell lsp-ui
+	     move-text org-appear org-download org-preview-html
+	     org-roam-ui ox-hugo pandoc-mode terminal-here transient
+	     treemacs vertico vterm yasnippet))
  '(safe-local-variable-values
    '((org-roam-db-location . "~/Obsidian/CPP_LEARNING/.org-roam.db")
      (org-roam-directory . "~/Obsidian/CPP_LEARNING/")

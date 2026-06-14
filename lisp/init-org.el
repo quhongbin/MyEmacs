@@ -1,4 +1,4 @@
-;;; -*- lexical-binding: t; -*-
+ ;;; -*- lexical-binding: t; -*-
 (require 'use-package)
 ;; ==============================================
 ;; Org 渲染 & 美化 独立配置（优化版）
@@ -15,28 +15,74 @@
 ;;	browse-url-generic-program "google-chrome-stable"))
 
 ;; 行内实时渲染 Org（所见即所得）
-(use-package org-appear
-  :ensure t
-  :hook (org-mode . org-appear-mode)
-  :config
+;;(use-package org-appear
+;;  :ensure t
+;;  :hook (org-mode . org-appear-mode)
+;;  :config
   ;; 自动渲染：加粗、斜体、下划线、删除线、链接、图片、公式
-  (setq org-appear-autolinks t)
-  (setq org-appear-autosubmarkers t)
-  (setq org-appear-autoemphasis t)
-  (setq org-appear-autotags t)
+  ;;(setq org-appear-autolinks t)
+  ;;(setq org-appear-autosubmarkers t)
+  ;;(setq org-appear-autoemphasis t)
+  ;;(setq org-appear-autotags t)
 
   ;; 公式行内渲染（光标离开就显示）
-  (setq org-preview-latex-default-density 2.0)
+  ;;(setq org-preview-latex-default-density 2.0)
 ;;  (setq org-startup-with-latex-preview t)
 
   ;; 标题缩进美化
   ;;(setq org-startup-indented t)
-  (setq org-hide-emphasis-markers t)) ; 隐藏 * = / 等标记
-
+  ;;(setq org-hide-emphasis-markers t)) ; 隐藏 * = / 等标记
+;;)
 ;; ------------------------------
-;; yank-media configuration
+;; ox-hugo configuration
 ;; ------------------------------
+(use-package ox-hugo
+  :ensure t
+  :after ox)
 
+(defun my/export-cpp-learning-to-hugo ()
+(setq org-hugo-base-dir "~/Obsidian/hugo_blog/") ; Hugo 根目录
+  "将 CPP_LEARNING 下所有 Org 文件导出到 Hugo，保留目录结构并生成分类和标签，忽略非 Org 文件."
+  (interactive)
+  (let ((org-directory "~/Obsidian/CPP_LEARNING/"))
+    (dolist (file (directory-files-recursively org-directory "\\.org$")) ; 只匹配 org 文件
+      (with-current-buffer (find-file-noselect file)
+        ;; 计算相对路径，用于 section
+        (let* ((relative-dir (file-relative-name
+                              (file-name-directory file)
+                              org-directory))
+               (section-name (replace-regexp-in-string "/$" "" relative-dir))
+               ;; 用子目录名生成分类和标签
+               (categories (split-string section-name "/"))
+               (tags categories))
+          ;; 设置 Hugo section
+          (setq org-hugo-section section-name)
+          ;; 设置 Hugo categories & tags
+          (setq org-hugo-categories categories)
+          (setq org-hugo-tags tags))
+        ;; 导出到 Hugo
+        (org-hugo-export-to-md)))))
+
+;; -----------------------------
+;; ox-hugo 单文件交互式导出
+;; -----------------------------
+(defun my/export-current-org-to-hugo ()
+  "交互式导出当前 Org 文件到 Hugo。
+提示选择 Hugo section（content 子目录），保持原文件名作为 slug。"
+  (interactive)
+  (require 'ox-hugo)
+  ;; 确保使用 Hugo 根目录
+  (setq org-hugo-base-dir "~/Obsidian/hugo_blog/")
+  ;; 提示用户输入 section（content 子目录）
+  (let ((section (read-string "Enter Hugo section (content subdir): "))
+        (slug (file-name-base (buffer-file-name)))) ; 使用原文件名作为 slug
+    (setq org-hugo-section section)
+    (setq org-hugo-slug slug)
+    ;; 导出当前文件
+    (org-hugo-export-wim-to-md)))
+
+;; 快捷键调用
+(global-set-key (kbd "C-c h s") 'my/export-current-org-to-hugo)
 
 ;; ------------------------------
 ;; org-roam configration
@@ -61,8 +107,10 @@
 (add-hook 'org-mode-hook
 	  (lambda()
 	    (setq-local prettify-symbols-alist
-			'(("#+begin_src" . ">")
-			  ("#+end_src" . ">")))
+			'(("#+begin_src" . "~")
+			  ("#+end_src" . "~")
+			  ("#+begin_quote" . ">")
+			  ("#+end_quote" . "<")))
 	    (prettify-symbols-mode 1)))
 
 ;; ------------------------------
@@ -86,6 +134,15 @@
 ;; org template
 ;; ------------------------------
 (require 'org-tempo)
+
+;; ------------------------------
+;; org-download
+;; ------------------------------
+;;(require 'org-download
+;;	 :ensure t
+;;	 :after org)
+
+
 
 
 ;; ------------------------------
@@ -192,7 +249,7 @@
 ;;
 ;; ;; TODO / 关键字高亮
 ;; '(org-todo ((t (:foreground "#e17055" :weight bold))))
-;; '(org-done ((t (:foreground "#00b894" :weight bold))))
+;; '(org-ne ((t (:foreground "#00b894" :weight bold))))
 ;;
 ;; ;; 标签高亮
 ;; '(org-tag ((t (:foreground "#555" :background "#eee" :box t :height 0.9))))
