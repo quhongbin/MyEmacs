@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: Basic
+# key: Basic
+# --
+
+#+title: ${1:}
+#+author: ${2:Hongbin Qu}
+#+date: ${3:}
+
+$0
