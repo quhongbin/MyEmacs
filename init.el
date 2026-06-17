@@ -58,7 +58,11 @@
  '(custom-safe-themes
    '("51fa6edfd6c8a4defc2681e4c438caf24908854c12ea12a1fbfd4d055a9647a3"
      default))
- '(package-selected-packages nil)
+ '(package-selected-packages
+   '(company doom-themes grip-mode gruvbox-theme haskell-mode htmlize
+	     lsp-ui magit move-text org-appear org-preview-html
+	     org-roam-ui ox-hugo terminal-here transient treemacs
+	     vterm yasnippet))
  '(safe-local-variable-values
    '((org-roam-directory . "~/CPP_LEARNING/")
      (org-roam-db-location . "~/Obsidian/CPP_LEARNING/.org-roam.db")
