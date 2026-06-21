@@ -2,6 +2,6 @@
   :ensure t
   :after org
   :config
-  (yas-global-mode 1))
+  (yas-global-mode))
 
 (provide 'yasnippet)
