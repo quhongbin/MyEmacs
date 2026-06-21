@@ -69,6 +69,13 @@
  '(custom-safe-themes
    '("51fa6edfd6c8a4defc2681e4c438caf24908854c12ea12a1fbfd4d055a9647a3"
      default))
+<<<<<<< HEAD
+ '(package-selected-packages
+   '(company doom-themes grip-mode gruvbox-theme haskell-mode htmlize
+	     lsp-ui magit move-text org-appear org-preview-html
+	     org-roam-ui ox-hugo terminal-here transient treemacs
+	     vterm yasnippet))
+=======
  '(font-use-system-font t)
  '(package-selected-packages
    '(auctex cdlatex company consult-lsp doom-themes go-mode grip-mode
@@ -77,11 +84,12 @@
 	    org-preview-html org-roam-ui ox-hugo pandoc-mode
 	    python-mode rust-mode terminal-here transient treemacs
 	    vertico vterm yasnippet zig-mode))
+>>>>>>> b35569fbc5e531f64c79eed656a0daf87cd254df
  '(safe-local-variable-values
-   '((org-roam-db-location . "~/Obsidian/CPP_LEARNING/.org-roam.db")
+   '((org-roam-directory . "~/CPP_LEARNING/")
+     (org-roam-db-location . "~/Obsidian/CPP_LEARNING/.org-roam.db")
      (org-roam-directory . "~/Obsidian/CPP_LEARNING/")
-     (org-roam-db-location . "~/CPP_LEARNING/.org-roam.db")
-     (org-roam-directory . "~/CPP_LEARNING"))))
+     (org-roam-db-location . "~/CPP_LEARNING/.org-roam.db"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

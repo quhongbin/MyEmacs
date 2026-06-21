@@ -1,5 +1,12 @@
- ;;; -*- lexical-binding: t; -*-
+;;; -*- lexical-binding: t; -*-
 (require 'use-package)
+;; ==========================
+(org-babel-do-load-languages 'org-babel-load-languages
+			     '((C . t)
+			       (python . t)))
+
+
+
 ;; ==============================================
 ;; Org 渲染 & 美化 独立配置（优化版）
 ;; 依赖：org-modern, emacs 内置 org
@@ -15,32 +22,34 @@
 ;;	browse-url-generic-program "google-chrome-stable"))
 
 ;; 行内实时渲染 Org（所见即所得）
-;;(use-package org-appear
-;;  :ensure t
-;;  :hook (org-mode . org-appear-mode)
-;;  :config
+(use-package org-appear
+  :ensure t
+  :hook (org-mode . org-appear-mode)
+  :config
   ;; 自动渲染：加粗、斜体、下划线、删除线、链接、图片、公式
-  ;;(setq org-appear-autolinks t)
-  ;;(setq org-appear-autosubmarkers t)
-  ;;(setq org-appear-autoemphasis t)
-  ;;(setq org-appear-autotags t)
+  (setq org-appear-autolinks t)
+  (setq org-appear-autosubmarkers t)
+  (setq org-appear-autoemphasis t)
+  (setq org-appear-autotags t)
 
   ;; 公式行内渲染（光标离开就显示）
-  ;;(setq org-preview-latex-default-density 2.0)
+  (setq org-preview-latex-default-density 2.0)
 ;;  (setq org-startup-with-latex-preview t)
 
   ;; 标题缩进美化
   ;;(setq org-startup-indented t)
-  ;;(setq org-hide-emphasis-markers t)) ; 隐藏 * = / 等标记
-;;)
+  (setq org-hide-emphasis-markers t)) ; 隐藏 * = / 等标记
+
 ;; ------------------------------
-;; ox-hugo configuration
+;; ox-hugo configuratio n
 ;; ------------------------------
 (use-package ox-hugo
   :ensure t
-  :after ox)
-
-
+  :after ox
+  :config
+  ;; 可选：如果你希望全局所有 Org-Hugo 文件都在保存时自动导出
+  ;; (add-hook 'org-mode-hook #'org-hugo-auto-export-mode)
+  )
 ;; ------------------------------
 ;; org-roam configration
 ;; ------------------------------ 
@@ -61,14 +70,6 @@
 
 ;; 符号美化（内置 prettify-symbols-mode）
 (add-hook 'org-mode-hook #'prettify-symbols-mode)
-(add-hook 'org-mode-hook
-	  (lambda()
-	    (setq-local prettify-symbols-alist
-			'(("#+begin_src" . "~")
-			  ("#+end_src" . "~")
-			  ("#+begin_quote" . ">")
-			  ("#+end_quote" . "<")))
-	    (prettify-symbols-mode 1)))
 
 ;; ------------------------------
 ;; org-babel
@@ -91,23 +92,6 @@
 ;; org template
 ;; ------------------------------
 (require 'org-tempo)
-
-;; ------------------------------
-;; org-download
-;; ------------------------------
-(use-package org-download
-	:ensure t
-	:after org
-	:bind (:map org-mode-map
-		    ("C-M-y" . org-download-clipboard))
-	:custom
-	;; 所有图片统一放这里
-	(org-download-image-dir "./images")
-	;; 不按标题建目录
-	(org-download-heading-lvl nil))
-;;(with-eval-after-load 'org
-;;  (define-key org-mode-map (kbd "C-M-y")
-;;              #'org-download-clipboard))
 
 
 ;; ------------------------------
@@ -214,7 +198,7 @@
 ;;
 ;; ;; TODO / 关键字高亮
 ;; '(org-todo ((t (:foreground "#e17055" :weight bold))))
-;; '(org-ne ((t (:foreground "#00b894" :weight bold))))
+;; '(org-done ((t (:foreground "#00b894" :weight bold))))
 ;;
 ;; ;; 标签高亮
 ;; '(org-tag ((t (:foreground "#555" :background "#eee" :box t :height 0.9))))
