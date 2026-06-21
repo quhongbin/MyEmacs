@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: latex-single
+# key: latex-single
+# --
+
+\[$0 \]

@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: DataStruct
-# key: DataStruct
+# key: datas
 # --
 
 

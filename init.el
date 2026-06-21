@@ -18,10 +18,10 @@
 (require 'init-lsp)
 (require 'init-org)
 
-(add-to-list 'load-path "~/.emacs.d/lisp/editor-packages/")
-(require 'treemacs)
-(require 'yasnippet)
-
+;;(add-to-list 'load-path "~/.emacs.d/lisp/editor-packages/")
+;;(require 'treemacs)
+;;(require 'yasnippet)
+;;
 ;; gemini ai generator
 ;; 定义一个标志位，防止重复加载
 (defvar my-gui-packages-loaded-p nil)
