@@ -93,6 +93,23 @@
 ;; ------------------------------
 (require 'org-tempo)
 
+;; ------------------------------
+;; org-download
+;; ------------------------------
+(use-package org-download
+	:ensure t
+	:after org
+	:bind (:map org-mode-map
+		    ("C-M-y" . org-download-clipboard))
+	:custom
+	;; 所有图片统一放这里
+	(org-download-image-dir "./images")
+	;; 不按标题建目录
+	(org-download-heading-lvl nil))
+;;(with-eval-after-load 'org
+;;  (define-key org-mode-map (kbd "C-M-y")
+;;              #'org-download-clipboard))
+
 
 ;; ------------------------------
 ;; org 
