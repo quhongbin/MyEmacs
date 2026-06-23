@@ -70,6 +70,14 @@
 
 ;; 符号美化（内置 prettify-symbols-mode）
 (add-hook 'org-mode-hook #'prettify-symbols-mode)
+(add-hook 'org-mode-hook
+	  (lambda()
+	    (setq-local prettify-symbols-alist
+			'(("#+begin_src" . ">")
+			  ("#+end_src" . "<")
+			  ("#+begin_quote" . ">")
+			  ("#+end_quote" . "<")))
+	    (prettify-symbols-mode 1)))
 
 ;; ------------------------------
 ;; org-babel

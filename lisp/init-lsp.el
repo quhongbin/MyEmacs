@@ -1,14 +1,13 @@
 ;;; -*- lexical-binding: t; -*-
--;; 提前声明 markdown-mode，让 lsp-mode 能找到它
--(use-package python-mode
--  :ensure t)
--(use-package zig-mode
--  :ensure t)
--(use-package rust-mode
--  :ensure t)
--(use-package go-mode
-+(use-package haskell-mode
-
+;; 提前声明 markdown-mode，让 lsp-mode 能找到它
+(use-package python-mode
+  :ensure t)
+(use-package zig-mode
+  :ensure t)
+(use-package rust-mode
+  :ensure t)
+(use-package go-mode
+  :ensure t)
 (use-package haskell-mode
   :ensure t)
 ;;(use-package lsp-haskell)
