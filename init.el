@@ -12,7 +12,7 @@
 ;;
 (package-initialize)
 (add-to-list 'load-path "~/.emacs.d/lisp")
-(require 'init-magit)
+;;(require 'init-magit)
 (require 'init-editor)
 (require 'init-theme)
 (require 'init-lsp)
@@ -35,17 +35,17 @@
     (message "检测到图形界面，正在加载 EAF 及 GUI 组件...")
 
     ;; --- EAF 配置开始 ---
-    (add-to-list 'load-path "~/.emacs.d/site-lisp/emacs-application-framework/")
-	(require 'eaf)
-	(require 'eaf-browser)
-	(require 'eaf-pdf-viewer)
-	(require 'eaf-image-viewer)
-	(require 'eaf-terminal)
-	(require 'eaf-markdown-previewer)
-	(require 'eaf-org-previewer)
-	(require 'eaf-mindmap)
-	(require 'eaf-jupyter)
-	(require 'eaf-pyqterminal)
+;;    (add-to-list 'load-path "~/.emacs.d/site-lisp/emacs-application-framework/")
+;;	(require 'eaf)
+;;	(require 'eaf-browser)
+;;	(require 'eaf-pdf-viewer)
+;;	(require 'eaf-image-viewer)
+;;	(require 'eaf-terminal)
+;;	(require 'eaf-markdown-previewer)
+;;	(require 'eaf-org-previewer)
+;;	(require 'eaf-mindmap)
+;;	(require 'eaf-jupyter)
+;;	(require 'eaf-pyqterminal)
 
 ;;    ;; --- EAF 配置结束 ---
 ;;
@@ -82,6 +82,9 @@
      (org-roam-db-location . "~/Obsidian/CPP_LEARNING/.org-roam.db")
      (org-roam-directory . "~/Obsidian/CPP_LEARNING/")
      (org-roam-db-location . "~/CPP_LEARNING/.org-roam.db"))))
+
+
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
