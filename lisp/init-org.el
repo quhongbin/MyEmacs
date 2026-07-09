@@ -235,7 +235,6 @@
 ;; 自动换行，更像现代编辑器
 (defun start-yas-wrap ()
   (visual-line-mode 1)
-  (yas-minor-mode 1)
   (org-modern-mode)
   )
 (add-hook 'org-mode-hook #'start-yas-wrap)

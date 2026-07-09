@@ -44,5 +44,6 @@
 (use-package consult-lsp
   :ensure t)
 
+(add-hook 'prog-mode-hook #'yas-minor-mode)
 
 (provide 'init-lsp)
