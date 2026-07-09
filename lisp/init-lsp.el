@@ -30,11 +30,14 @@
   :config
   (global-company-mode 1)
   (setq company-minimum-prefix-length 2))
+
+;; completetion framework UI plugin
 (use-package vertico
   :ensure t
   :init
-  (vertico-mode))
+  (vertico-mode 1))
 
+;; search and locate commands
 (use-package consult
   :ensure t)
 
