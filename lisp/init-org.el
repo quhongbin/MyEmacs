@@ -4,8 +4,12 @@
 (org-babel-do-load-languages 'org-babel-load-languages
 			     '((C . t)
 			       (python . t)))
-
-
+;; ==============================================
+;; org-modern make Org-mode ui perfect
+;; ==============================================
+(use-package org-modern
+  :ensure t
+  :hook (org-mode. org-modern-mode))
 
 ;; ==============================================
 ;; Org 渲染 & 美化 独立配置（优化版）
@@ -69,15 +73,15 @@
 	org-roam-ui-update-on-save t))
 
 ;; 符号美化（内置 prettify-symbols-mode）
-(add-hook 'org-mode-hook #'prettify-symbols-mode)
-(add-hook 'org-mode-hook
-	  (lambda()
-	    (setq-local prettify-symbols-alist
-			'(("#+begin_src" . ">")
-			  ("#+end_src" . "<")
-			  ("#+begin_quote" . ">")
-			  ("#+end_quote" . "<")))
-	    (prettify-symbols-mode 1)))
+;;(add-hook 'org-mode-hook #'prettify-symbols-mode)
+;;(add-hook 'org-mode-hook
+;;	  (lambda()
+;;	    (setq-local prettify-symbols-alist
+;;			'(("#+begin_src" . ">")
+;;			  ("#+end_src" . "<")
+;;			  ("#+begin_quote" . ">")
+;;			  ("#+end_quote" . "<")))
+;;	    (prettify-symbols-mode 1)))
 
 ;; ------------------------------
 ;; org-babel
