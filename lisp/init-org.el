@@ -8,8 +8,7 @@
 ;; org-modern make Org-mode ui perfect
 ;; ==============================================
 (use-package org-modern
-  :ensure t
-  :hook (org-mode. org-modern-mode))
+  :ensure t)
 
 ;; ==============================================
 ;; Org 渲染 & 美化 独立配置（优化版）
@@ -233,8 +232,16 @@
 ;; '(org-tag ((t (:foreground "#555" :background "#eee" :box t :height 0.9))))
 ;; )
 ;;
-;;;; 5. 自动换行，更像现代编辑器
-;;(add-hook 'org-mode-hook (lambda () (visual-line-mode 1)))
+;; 自动换行，更像现代编辑器
+(defun start-yas-wrap ()
+  (visual-line-mode 1)
+  (yas-minor-mode 1)
+  (org-modern-mode)
+  )
+(add-hook 'org-mode-hook #'start-yas-wrap)
+;; fold PEOPERTIES attribution
+(setq org-startup-folded t)
+
 ;;;; ------------------------------
 ;; 配置提供
 ;; ------------------------------
