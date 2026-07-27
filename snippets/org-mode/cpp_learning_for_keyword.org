@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: CPP_LEARNING_FOR_KEYWORD
-# key: CPP_KEYWORD
+# key: cppnote
 # --
 
 #+title: ${1:CPP_LEARNING_FOR_KEYWORD}

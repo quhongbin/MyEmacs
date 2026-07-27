@@ -75,6 +75,23 @@
   (which-key-mode 1)
   (setq which-key-idle-delay 0.1))
 
+(use-package pyim
+  :ensure t
+  :config
+  (setq default-input-method "pyim")
+
+  ;; 使用双拼
+  (pyim-default-scheme 'ziranma-shuangpin)
+
+  (global-set-key (kbd "C-\\") #'toggle-input-method))
+
+(use-package pyim-basedict
+  :ensure t
+  :after pyim
+  :config
+  (pyim-basedict-enable))
+
+
 (add-to-list 'load-path "editor-packages/")
 (require 'treemacs)
 (require 'yasnippet)

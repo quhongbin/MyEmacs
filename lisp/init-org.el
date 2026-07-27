@@ -8,7 +8,9 @@
 ;; org-modern make Org-mode ui perfect
 ;; ==============================================
 (use-package org-modern
-  :ensure t)
+  :ensure t
+  :config
+  (setq org-modern-table nil))
 
 ;; ==============================================
 ;; Org 渲染 & 美化 独立配置（优化版）
@@ -235,7 +237,8 @@
 ;; 自动换行，更像现代编辑器
 (defun start-yas-wrap ()
   (visual-line-mode 1)
-  (org-modern-mode)
+  (org-modern-mode 1)
+  (yas-global-mode 1)
   )
 (add-hook 'org-mode-hook #'start-yas-wrap)
 ;; fold PEOPERTIES attribution
