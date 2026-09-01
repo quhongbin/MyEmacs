@@ -83,7 +83,6 @@
      (org-roam-db-location . "~/Obsidian/CPP_LEARNING/.org-roam.db")
      (org-roam-directory . "~/Obsidian/CPP_LEARNING/")
      (org-roam-db-location . "~/CPP_LEARNING/.org-roam.db"))))
-
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
