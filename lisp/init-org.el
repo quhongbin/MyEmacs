@@ -16,15 +16,8 @@
 ;; Org 渲染 & 美化 独立配置（优化版）
 ;; 依赖：org-modern, emacs 内置 org
 ;; ==============================================
-;; org preview
-(use-package org-preview-html
-  :ensure t
-  :config
-  (setq org-preview-html-refresh-configuration 'save
-	;;org-preview-html-timer-interval 2
-	org-preview-html-viewer 'xwidget))
-;;  (setq browse-url-browser-function 'browse-url-generic
-;;	browse-url-generic-program "google-chrome-stable"))
+
+
 
 ;; 行内实时渲染 Org（所见即所得）
 (use-package org-appear
@@ -52,6 +45,24 @@
   :ensure t
   :after ox
   :config
+  (setq org-hugo-base-dir
+      (cond
+       ;; 判断 WSL：/proc/version 包含 Microsoft
+       ((and (eq system-type 'gnu/linux)
+             (string-match-p "Microsoft\\|WSL"
+                            (with-temp-buffer
+                              (insert-file-contents "/proc/version")
+                              (buffer-string))))
+        "/mnt/d/MyAPP/hugo-blogs-contents")
+       
+       ;; 判断 Arch（根据 hostname）
+       ((string= (system-name) "你的Arch主机名")
+        "/home/你的用户名/Projects/hugo-blogs-contents")
+       
+       ;; 兜底
+       (t (expand-file-name "~/hugo"))))
+  ;;配置导出yaml格式
+  (setq org-hugo-front-matter-format "yaml")
   ;; 可选：如果你希望全局所有 Org-Hugo 文件都在保存时自动导出
   ;; (add-hook 'org-mode-hook #'org-hugo-auto-export-mode)
   )
@@ -119,6 +130,9 @@
 	(org-download-image-dir "./images")
 	;; 不按标题建目录
 	(org-download-heading-lvl nil))
+;;	:config
+;;	(setq org-download-screenshot-method
+;;        "powershell.exe -Command \"(Get-Clipboard -Format image).Save('$(wslpath -w %s)')\""))
 ;;(with-eval-after-load 'org
 ;;  (define-key org-mode-map (kbd "C-M-y")
 ;;              #'org-download-clipboard))

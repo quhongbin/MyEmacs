@@ -70,13 +70,14 @@
    '("51fa6edfd6c8a4defc2681e4c438caf24908854c12ea12a1fbfd4d055a9647a3"
      default))
  '(font-use-system-font t)
+ '(org-agenda-files '("/mnt/d/CPP_LEARNING/os/operating-system.org"))
  '(package-selected-packages
-   '(auctex cdlatex company consult-lsp doom-themes go-mode grip-mode
-	    gruvbox-theme haskell-mode impatient-mode lsp-haskell
-	    lsp-ui magit move-text org-appear org-download
-	    org-preview-html org-roam-ui ox-hugo pandoc-mode
-	    python-mode rust-mode terminal-here transient treemacs
-	    vertico vterm yasnippet zig-mode))
+   '(cmake-mode company consult-lsp doom-themes go-mode gptel
+		gruvbox-theme haskell-mode lsp-ui magit move-text
+		obsidian org-appear org-download org-modern
+		org-roam-ui ox-hugo pyim-basedict python-mode
+		rust-mode terminal-here treemacs vertico vterm
+		yasnippet zig-mode))
  '(safe-local-variable-values
    '((org-roam-directory . "~/CPP_LEARNING/")
      (org-roam-db-location . "~/Obsidian/CPP_LEARNING/.org-roam.db")
