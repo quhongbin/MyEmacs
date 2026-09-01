@@ -56,9 +56,13 @@
         "/mnt/d/MyAPP/hugo-blogs-contents")
        
        ;; 判断 Arch（根据 hostname）
-       ((string= (system-name) "你的Arch主机名")
-        "/home/你的用户名/Projects/hugo-blogs-contents")
-       
+       ((string= (system-name) "xiaoqu")
+        (expand-file-name "~/Blogs/hugo-blogs-contents"))
+
+       ;; 判断 Arch home 主机（根据 hostname）
+       ((string= (system-name) "xiaoqu-arch_home")
+        (expand-file-name "~/Blogs/hugo_endpoint"))
+
        ;; 兜底
        (t (expand-file-name "~/hugo"))))
   ;;配置导出yaml格式
