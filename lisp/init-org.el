@@ -35,24 +35,24 @@
 
 
 ;; 行内实时渲染 Org（所见即所得）
-(use-package org-appear
-  :ensure t
-  :hook (org-mode . org-appear-mode)
-  :config
+;;(use-package org-appear
+;;  :ensure t
+;;  :hook (org-mode . org-appear-mode)
+;;  :config
   ;; 自动渲染：加粗、斜体、下划线、删除线、链接、图片、公式
-  (setq org-appear-autolinks t)
-  (setq org-appear-autosubmarkers t)
-  (setq org-appear-autoemphasis t)
-  (setq org-appear-autotags t)
+  ;;(setq org-appear-autolinks t)
+  ;;(setq org-appear-autosubmarkers t)
+  ;;(setq org-appear-autoemphasis t)
+  ;;(setq org-appear-autotags t)
 
   ;; 公式行内渲染（光标离开就显示）
-  (setq org-preview-latex-default-density 2.0)
+  ;;(setq org-preview-latex-default-density 2.0)
 ;;  (setq org-startup-with-latex-preview t)
 
   ;; 标题缩进美化
   ;;(setq org-startup-indented t)
-  (setq org-hide-emphasis-markers t)) ; 隐藏 * = / 等标记
-
+  ;;(setq org-hide-emphasis-markers t)) ; 隐藏 * = / 等标记
+;;)
 ;; ------------------------------
 ;; ox-hugo configuratio n
 ;; ------------------------------
@@ -71,9 +71,13 @@
         "/mnt/d/MyAPP/hugo-blogs-contents")
        
        ;; 判断 Arch（根据 hostname）
-       ((string= (system-name) "你的Arch主机名")
-        "/home/你的用户名/Projects/hugo-blogs-contents")
-       
+       ((string= (system-name) "xiaoqu")
+        (expand-file-name "~/Blogs/hugo-blogs-contents"))
+
+       ;; 判断 Arch home 主机（根据 hostname）
+       ((string= (system-name) "xiaoqu-arch_home")
+        (expand-file-name "~/Blogs/hugo_endpoint"))
+
        ;; 兜底
        (t (expand-file-name "~/hugo"))))
   ;;配置导出yaml格式
@@ -81,6 +85,51 @@
   ;; 可选：如果你希望全局所有 Org-Hugo 文件都在保存时自动导出
   ;; (add-hook 'org-mode-hook #'org-hugo-auto-export-mode)
   )
+
+(defun my/export-cpp-learning-to-hugo ()
+(setq org-hugo-base-dir "~/Obsidian/hugo_blog/") ; Hugo 根目录
+  "将 CPP_LEARNING 下所有 Org 文件导出到 Hugo，保留目录结构并生成分类和标签，忽略非 Org 文件."
+  (interactive)
+  (let ((org-directory "~/Obsidian/CPP_LEARNING/"))
+    (dolist (file (directory-files-recursively org-directory "\\.org$")) ; 只匹配 org 文件
+      (with-current-buffer (find-file-noselect file)
+        ;; 计算相对路径，用于 section
+        (let* ((relative-dir (file-relative-name
+                              (file-name-directory file)
+                              org-directory))
+               (section-name (replace-regexp-in-string "/$" "" relative-dir))
+               ;; 用子目录名生成分类和标签
+               (categories (split-string section-name "/"))
+               (tags categories))
+          ;; 设置 Hugo section
+          (setq org-hugo-section section-name)
+          ;; 设置 Hugo categories & tags
+          (setq org-hugo-categories categories)
+          (setq org-hugo-tags tags))
+        ;; 导出到 Hugo
+        (org-hugo-export-to-md)))))
+
+;; -----------------------------
+;; ox-hugo 单文件交互式导出
+;; -----------------------------
+(defun my/export-current-org-to-hugo ()
+  "交互式导出当前 Org 文件到 Hugo。
+提示选择 Hugo section（content 子目录），保持原文件名作为 slug。"
+  (interactive)
+  (require 'ox-hugo)
+  ;; 确保使用 Hugo 根目录
+  (setq org-hugo-base-dir "~/Obsidian/hugo_blog/")
+  ;; 提示用户输入 section（content 子目录）
+  (let ((section (read-string "Enter Hugo section (content subdir): "))
+        (slug (file-name-base (buffer-file-name)))) ; 使用原文件名作为 slug
+    (setq org-hugo-section section)
+    (setq org-hugo-slug slug)
+    ;; 导出当前文件
+    (org-hugo-export-wim-to-md)))
+
+;; 快捷键调用
+(global-set-key (kbd "C-c h s") 'my/export-current-org-to-hugo)
+
 ;; ------------------------------
 ;; org-roam configration
 ;; ------------------------------ 
@@ -100,15 +149,15 @@
 	org-roam-ui-update-on-save t))
 
 ;; 符号美化（内置 prettify-symbols-mode）
-;;(add-hook 'org-mode-hook #'prettify-symbols-mode)
-;;(add-hook 'org-mode-hook
-;;	  (lambda()
-;;	    (setq-local prettify-symbols-alist
-;;			'(("#+begin_src" . ">")
-;;			  ("#+end_src" . "<")
-;;			  ("#+begin_quote" . ">")
-;;			  ("#+end_quote" . "<")))
-;;	    (prettify-symbols-mode 1)))
+(add-hook 'org-mode-hook #'prettify-symbols-mode)
+(add-hook 'org-mode-hook
+	  (lambda()
+	    (setq-local prettify-symbols-alist
+			'(("#+begin_src" . "~")
+			  ("#+end_src" . "~")
+			  ("#+begin_quote" . ">")
+			  ("#+end_quote" . "<")))
+	    (prettify-symbols-mode 1)))
 
 ;; ------------------------------
 ;; org-babel
@@ -257,7 +306,7 @@
 ;;
 ;; ;; TODO / 关键字高亮
 ;; '(org-todo ((t (:foreground "#e17055" :weight bold))))
-;; '(org-done ((t (:foreground "#00b894" :weight bold))))
+;; '(org-ne ((t (:foreground "#00b894" :weight bold))))
 ;;
 ;; ;; 标签高亮
 ;; '(org-tag ((t (:foreground "#555" :background "#eee" :box t :height 0.9))))
