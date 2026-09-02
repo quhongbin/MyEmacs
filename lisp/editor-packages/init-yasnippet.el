@@ -3,4 +3,4 @@
   :config
   )
 
-(provide 'yasnippet)
+(provide 'init-yasnippet)

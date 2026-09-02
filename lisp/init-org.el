@@ -1,4 +1,19 @@
 ;;; -*- lexical-binding: t; -*-
+;;; 配合hugo 使用org-id导出org格式的引用
+(require 'org-id)
+(setq org-id-method 'ts)
+(setq org-id-ts-format "%Y%m%dT%H%M%S")
+;; org-id-extra-files 的登记与「ID -> 文件」索引重建已移至
+;; lisp/org-package/hugo-export-md-by-org-id.el：打开 CPP_LEARNING 下任意
+;; org 文件时自动执行（org-mode-hook），不再依赖启动时一次性算死的静态列表。
+;; 注意：load-path 必须是绝对路径。相对路径按 default-directory（emacs
+;; 启动时所在目录）解析，从别的目录启动就会 require 失败。
+;; 这里用 load-file-name（本文件的绝对路径）定位 lisp/ 目录，
+;; 再拼出 org-package 的绝对路径 —— 换机器、换主目录都不用改。
+(add-to-list 'load-path
+             (expand-file-name "org-package"
+                               (file-name-directory (or load-file-name buffer-file-name))))
+(require 'hugo-export-md-by-org-id)
 (require 'use-package)
 ;; ==========================
 (org-babel-do-load-languages 'org-babel-load-languages

@@ -92,7 +92,19 @@
   (pyim-basedict-enable))
 
 
-(add-to-list 'load-path "editor-packages/")
-(require 'treemacs)
-(require 'yasnippet)
+;; load-path 必须用绝对路径：相对路径（如 "editor-packages/"）是按
+;; default-directory（emacs 启动时所在的目录）解析的 —— 从 home 或项目目录
+;; 启动 emacs 时根本找不到这个目录，require 就会报 "Cannot open load file"。
+;; 这里用 load-file-name（本文件被加载时的绝对路径）定位 lisp/ 目录，
+;; 再拼出 editor-packages 的绝对路径，任何目录下启动 emacs 都能正确加载。
+(add-to-list 'load-path
+             (expand-file-name "editor-packages"
+                               (file-name-directory (or load-file-name buffer-file-name))))
+;; 这里 require 的是 editor-packages/ 里的本地包装文件 init-treemacs /
+;; init-yasnippet（feature 名与包名不同）。坑点：包装文件不能用与包相同的
+;; 文件名 + (provide '包名)——那会插队遮蔽 elpa 里的真实包，且内层
+;; use-package 触发的 (require '包名) 在 provide 执行前再次加载同一文件，
+;; 报 "Recursive require"。同名包装文件已改名 init-*.el 规避。
+(require 'init-treemacs)
+(require 'init-yasnippet)
 (provide 'init-editor)
