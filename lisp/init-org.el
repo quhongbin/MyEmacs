@@ -70,13 +70,17 @@
                               (buffer-string))))
         "/mnt/d/MyAPP/hugo-blogs-contents")
        
-       ;; 判断 Arch（根据 hostname）
+       ;; 判断 wsl-Arch（根据 hostname）
        ((string= (system-name) "xiaoqu")
         (expand-file-name "~/Blogs/hugo-blogs-contents"))
 
        ;; 判断 Arch home 主机（根据 hostname）
        ((string= (system-name) "xiaoqu-arch_home")
         (expand-file-name "~/Blogs/hugo_endpoint"))
+
+       ;; 判断 vmware Arch home 主机（根据 hostname）
+       ((string= (system-name) "arch-q")
+        (expand-file-name "~/Blogs/hugo-blogs-contents"))
 
        ;; 兜底
        (t (expand-file-name "~/hugo"))))
