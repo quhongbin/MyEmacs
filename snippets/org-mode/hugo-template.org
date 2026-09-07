@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: hugo-template
+# key: hugo-template
+# --
+
+#+title: ${1:}
+#+author: ${2:Hongbin Qu}
+#+date: ${3:}
+#+hugo_section: ${4:en/notes}
+#+hugo_tags: "${5:}"
+#+hugo_categories: "${6:}"
+#+hugo_custom_front_matter: :logs "${7:}"
+#+hugo_custom_front_matter: :logs_descripe "${8:}"
+
+$0
