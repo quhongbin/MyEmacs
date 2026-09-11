@@ -7,6 +7,17 @@
   (("M-p" . move-text-up)
    ("M-n" . move-text-down)))
 
+
+;;----------------
+;;avy like vim plugin EasyMotion plugin
+;;----------------
+(use-package avy
+  :ensure t
+  :config
+  (setq avy-timeout-seconds 1)
+  (global-set-key (kbd "C-c j") 'avy-goto-char-timer))
+
+
 ;;----------------
 ;;auto save config
 ;;----------------
@@ -80,6 +91,8 @@
   :config
   (setq default-input-method "pyim")
 
+  ;; 配置pyim插件在中文输入法环境下，输入字符为半角
+  (setq-default pyim-punctuation-translate-p '(auto no yes))
   ;; 使用双拼
   (pyim-default-scheme 'ziranma-shuangpin)
 
