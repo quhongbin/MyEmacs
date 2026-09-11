@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: begin_quote
-# key: begin_quote
+# key: begin-quote
 # --
 
 #+begin_quote
