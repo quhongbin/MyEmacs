@@ -25,34 +25,34 @@
 (use-package org-modern
   :ensure t
   :config
-  (setq org-modern-table nil))
+  (setq org-modern-table nil)
+  :hook
+  (org-mode . org-modern-mode)
+  (org-agenda-finalize . org-modern-agenda))
 
 ;; ==============================================
 ;; Org 渲染 & 美化 独立配置（优化版）
 ;; 依赖：org-modern, emacs 内置 org
 ;; ==============================================
 
-
-
 ;; 行内实时渲染 Org（所见即所得）
-;;(use-package org-appear
-;;  :ensure t
-;;  :hook (org-mode . org-appear-mode)
-;;  :config
+(use-package org-appear
+  :ensure t
+  :hook (org-mode . org-appear-mode)
+  :config
   ;; 自动渲染：加粗、斜体、下划线、删除线、链接、图片、公式
-  ;;(setq org-appear-autolinks t)
-  ;;(setq org-appear-autosubmarkers t)
-  ;;(setq org-appear-autoemphasis t)
-  ;;(setq org-appear-autotags t)
+  (setq org-appear-autolinks t)
+  (setq org-appear-autosubmarkers t)
+  (setq org-appear-autoemphasis t)
+  (setq org-appear-autotags t)
 
-  ;; 公式行内渲染（光标离开就显示）
-  ;;(setq org-preview-latex-default-density 2.0)
-;;  (setq org-startup-with-latex-preview t)
+   ;;公式行内渲染（光标离开就显示）
+  (setq org-preview-latex-default-density 2.0)
+  (setq org-startup-with-latex-preview t)
 
-  ;; 标题缩进美化
-  ;;(setq org-startup-indented t)
-  ;;(setq org-hide-emphasis-markers t)) ; 隐藏 * = / 等标记
-;;)
+   ;;标题缩进美化
+  (setq org-startup-indented t)
+  (setq org-hide-emphasis-markers t)) ; 隐藏 * = / 等标记
 ;; ------------------------------
 ;; ox-hugo configuratio n
 ;; ------------------------------
