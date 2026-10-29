@@ -119,5 +119,6 @@
 ;; use-package 触发的 (require '包名) 在 provide 执行前再次加载同一文件，
 ;; 报 "Recursive require"。同名包装文件已改名 init-*.el 规避。
 (require 'init-treemacs)
+(require 'init-evil)
 (require 'init-yasnippet)
 (provide 'init-editor)

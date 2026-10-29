@@ -11,9 +11,12 @@
 (use-package haskell-mode
   :ensure t)
 
+(use-package nix-mode
+  :ensure t)
+
 (use-package lsp-mode
   :ensure t
-  :hook ((python-mode c++-mode rust-mode go-mode zig-mode c-mode) . lsp-deferred)
+  :hook ((python-mode c++-mode rust-mode go-mode zig-mode c-mode nix-mode) . lsp-deferred)
   :commands lsp
   :init
   (setq lsp-keymap-prefix "C-c L"))
