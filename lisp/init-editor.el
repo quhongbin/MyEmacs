@@ -7,7 +7,6 @@
   (("M-p" . move-text-up)
    ("M-n" . move-text-down)))
 
-
 ;;----------------
 ;;avy like vim plugin EasyMotion plugin
 ;;----------------
@@ -120,5 +119,6 @@
 ;; 报 "Recursive require"。同名包装文件已改名 init-*.el 规避。
 (require 'init-treemacs)
 (require 'init-evil)
+(require 'init-ace-windows)
 (require 'init-yasnippet)
 (provide 'init-editor)

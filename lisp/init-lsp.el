@@ -40,7 +40,9 @@
 
 ;; search and locate commands
 (use-package consult
-  :ensure t)
+  :ensure t
+
+  )
 
 (use-package consult-lsp
   :ensure t)
@@ -57,5 +59,22 @@
 
 (use-package consult-lsp
   :ensure t)
+
+(use-package imenu-list
+  :ensure t
+  :config
+  ;; 在左下角显示 imenu-list（slot 1，位于 treemacs 下方）。
+  ;; 本条目必须写在 :config 里（imenu-list 加载完成之后），
+  ;; 这样它才会插到 imenu-list 自己注册的 display-buffer-alist 条目之前，
+  ;; 覆盖其默认的 split-window 显示方式。
+  (add-to-list 'display-buffer-alist
+               '("\\*Ilist\\*"
+                 display-buffer-in-side-window
+                 (side . left)
+                 (slot . 1)
+                 (window-height . 0.35)
+                 (window-width . 30)))
+  ;; 在 lsp-mode 下自动显示 imenu-list（函数/符号大纲）
+  (add-hook 'lsp-mode-hook (lambda () (imenu-list-minor-mode 1))))
 
 (provide 'init-lsp)
