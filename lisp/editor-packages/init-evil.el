@@ -1,4 +1,7 @@
 ;; -*- lexical-binding: t; -*-
+(setq evil-want-keybinding nil)
+(setq evil-want-integration t)
+
 (use-package evil
   :ensure t
   :config
