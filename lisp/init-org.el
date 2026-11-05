@@ -326,6 +326,22 @@
 ;; fold PEOPERTIES attribution
 (setq org-startup-folded t)
 
+  ;; 你所有文本块的清单 —— 记住块类型就靠它
+(defvar my/org-block-types
+  '("warning" "error" "note" "tip" "important" "caution")
+  "可用的 special block 类型列表。")
+
+(defun my/org-insert-special-block (type)
+  "插入一对 #+begin_TYPE / #+end_TYPE 块，TYPE 通过补全选择。"
+  (interactive
+   (list (completing-read "Block type: " my/org-block-types nil t)))
+  (insert (format "#+begin_%s\n\n#+end_%s" type type))
+  (forward-line -1)          ; 光标停在块内部空行
+  (end-of-line))
+
+(global-set-key (kbd "C-c b") #'my/org-insert-special-block)
+
+
 ;;;; ------------------------------
 ;; 配置提供
 ;; ------------------------------

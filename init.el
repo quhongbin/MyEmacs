@@ -22,7 +22,29 @@
 ;;(require 'treemacs)
 ;;(require 'yasnippet)
 ;;
-;; gemini ai generator
+
+;;; Selection and Cursor Line
+
+;; Enable current line highlighting
+(global-hl-line-mode 1)
+
+;; Selected region
+(set-face-attribute 'region nil
+                    :foreground "#ebdbb2"
+                    :background "#504945")
+
+;; Current line
+(set-face-attribute 'hl-line nil
+                    :background 'unspecified
+                    :underline "#ebdbb2"
+                    :extend t)
+
+;; Cursor
+(setq-default cursor-type 'box)
+(set-face-attribute 'cursor nil
+                    :background "#bdae93")
+
+
 ;; 定义一个标志位，防止重复加载
 (defvar my-gui-packages-loaded-p nil)
 
@@ -66,11 +88,14 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   '("51fa6edfd6c8a4defc2681e4c438caf24908854c12ea12a1fbfd4d055a9647a3"
-     default))
  '(font-use-system-font t)
- '(package-selected-packages nil)
+ '(package-selected-packages
+   '(auctex cdlatex company consult-lsp doom-themes flycheck go-mode
+	    grip-mode gruvbox-theme haskell-mode impatient-mode
+	    lsp-haskell lsp-ui magit move-text nix-mode org-appear
+	    org-download org-modern org-preview-html org-roam-ui
+	    ox-hugo pandoc-mode pyim-basedict python-mode rust-mode
+	    terminal-here treemacs vertico vterm yasnippet zig-mode))
  '(safe-local-variable-values
    '((org-roam-directory . "~/CPP_LEARNING/")
      (org-roam-db-location . "~/Obsidian/CPP_LEARNING/.org-roam.db")
