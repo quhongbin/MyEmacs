@@ -71,12 +71,11 @@
      default))
  '(font-use-system-font t)
  '(package-selected-packages
-   '(auctex cdlatex company consult-lsp doom-themes go-mode grip-mode
-	    gruvbox-theme haskell-mode impatient-mode lsp-haskell
-	    lsp-ui magit move-text org-appear org-download org-modern
-	    org-preview-html org-roam-ui ox-hugo pandoc-mode
-	    pyim-basedict python-mode rust-mode terminal-here treemacs
-	    vertico vterm yasnippet zig-mode))
+   '(company consult-lsp doom-themes evil-collection evil-surround
+	     go-mode gruvbox-theme haskell-mode lsp-ui magit move-text
+	     nix-mode org-appear org-download org-modern org-roam-ui
+	     ox-hugo pyim-basedict python-mode rust-mode terminal-here
+	     treemacs vertico yasnippet zig-mode))
  '(safe-local-variable-values
    '((org-roam-directory . "~/CPP_LEARNING/")
      (org-roam-db-location . "~/Obsidian/CPP_LEARNING/.org-roam.db")
