@@ -7,6 +7,8 @@
   (("M-p" . move-text-up)
    ("M-n" . move-text-down)))
 
+;; set-mark-command 绑定到 M-SPC（默认的 just-one-space 被覆盖）
+(global-set-key (kbd "M-SPC") 'set-mark-command)
 
 ;;----------------
 ;;avy like vim plugin EasyMotion plugin
@@ -123,6 +125,6 @@
 (setq evil-want-integration t)
 (setq evil-want-keybinding nil)
 (require 'init-evil)
-
+(require 'init-ace-windows)
 (require 'init-yasnippet)
 (provide 'init-editor)
