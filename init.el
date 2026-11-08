@@ -17,6 +17,7 @@
 (require 'init-theme)
 (require 'init-lsp)
 (require 'init-org)
+(require 'init-markdown)
 
 ;;(add-to-list 'load-path "~/.emacs.d/lisp/editor-packages/")
 ;;(require 'treemacs)
@@ -33,16 +34,28 @@
                     :foreground "#ebdbb2"
                     :background "#504945")
 
-;; Current line
+;; Current line: 使用温和背景色高亮，禁止下划线
 (set-face-attribute 'hl-line nil
-                    :background 'unspecified
-                    :underline "#ebdbb2"
+                    :background "#32302f"
+                    :underline nil
                     :extend t)
 
-;; Cursor
+;; Cursor: 占据一个字符宽度的实心方块光标，不要下划线
 (setq-default cursor-type 'box)
+(setq-default cursor-in-non-selected-windows 'hollow)
 (set-face-attribute 'cursor nil
                     :background "#bdae93")
+
+;; Evil 模式下（若开启）各状态也均保持为一个字符宽度的方块光标，杜绝下划线
+(with-eval-after-load 'evil
+  (setq evil-default-cursor 'box
+        evil-normal-state-cursor 'box
+        evil-insert-state-cursor 'box
+        evil-visual-state-cursor 'box
+        evil-motion-state-cursor 'box
+        evil-replace-state-cursor 'box
+        evil-operator-state-cursor 'box
+        evil-emacs-state-cursor 'box))
 
 
 ;; 定义一个标志位，防止重复加载
@@ -88,14 +101,16 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ai-code-onboarding-seen t)
  '(font-use-system-font t)
  '(package-selected-packages
-   '(auctex cdlatex company consult-lsp doom-themes flycheck go-mode
-	    grip-mode gruvbox-theme haskell-mode impatient-mode
-	    lsp-haskell lsp-ui magit move-text nix-mode org-appear
-	    org-download org-modern org-preview-html org-roam-ui
-	    ox-hugo pandoc-mode pyim-basedict python-mode rust-mode
-	    terminal-here treemacs vertico vterm yasnippet zig-mode))
+   '(ai-code auctex cdlatex company consult-lsp doom-themes flycheck
+	     go-mode grip-mode gruvbox-theme haskell-mode
+	     impatient-mode lsp-haskell lsp-ui magit move-text
+	     nix-mode org-appear org-download org-modern
+	     org-preview-html org-roam-ui ox-hugo pandoc-mode
+	     pyim-basedict python-mode rust-mode terminal-here
+	     treemacs vertico vterm yasnippet zig-mode))
  '(safe-local-variable-values
    '((org-roam-directory . "~/CPP_LEARNING/")
      (org-roam-db-location . "~/Obsidian/CPP_LEARNING/.org-roam.db")
