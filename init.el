@@ -106,7 +106,7 @@
  '(package-selected-packages
    '(ai-code auctex cdlatex company consult-lsp doom-themes flycheck
 	     go-mode grip-mode gruvbox-theme haskell-mode
-	     impatient-mode lsp-haskell lsp-ui magit move-text
+	     impatient-mode kaomel lsp-haskell lsp-ui magit move-text
 	     nix-mode org-appear org-download org-modern
 	     org-preview-html org-roam-ui ox-hugo pandoc-mode
 	     pyim-basedict python-mode rust-mode terminal-here
@@ -121,5 +121,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "JetBrainsMono Nerd Font" :foundry "JB" :slant normal :weight regular :height 120 :width normal)))))
+ '(default ((t (:family "JetBrainsMono Nerd Font" :foundry "JB" :slant normal :weight regular :height 120 :width normal))))
+ '(markdown-header-face-1 ((t (:inherit (outline-1 bold) :height 1.4))))
+ '(markdown-header-face-2 ((t (:inherit (outline-2 bold) :height 1.3))))
+ '(markdown-header-face-3 ((t (:inherit (outline-3 bold) :height 1.2))))
+ '(markdown-header-face-4 ((t (:inherit (outline-4 bold) :height 1.1))))
+ '(markdown-header-face-5 ((t (:inherit (outline-5 bold) :height 1.05))))
+ '(markdown-header-face-6 ((t (:inherit (outline-6 bold) :height 1.0))))
+ '(markdown-inline-code-face ((((background dark)) :inherit fixed-pitch :background "#32302f" :foreground "#fabd2f") (((background light)) :inherit fixed-pitch :background "#ebdbb2" :foreground "#b57614") (t :inherit fixed-pitch :background "#3c3836" :foreground "#ebdbb2"))))
 (put 'set-goal-column 'disabled nil)
