@@ -9,3 +9,6 @@ elpa/
 /lisp/editor_BASE_5326.el
 /lisp/editor_LOCAL_5326.el
 /lisp/editor_REMOTE_5326.el
+*secrets*.el
+oauth2-auto.plist
+

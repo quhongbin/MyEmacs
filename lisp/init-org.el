@@ -13,6 +13,7 @@
 (add-to-list 'load-path
              (expand-file-name "org-package"
                                (file-name-directory (or load-file-name buffer-file-name))))
+(require 'init-calfw)
 (require 'hugo-export-md-by-org-id)
 (require 'use-package)
 ;; ==========================
@@ -52,7 +53,22 @@
 
    ;;标题缩进美化
   (setq org-startup-indented t)
-  (setq org-hide-emphasis-markers t)) ; 隐藏 * = / 等标记
+  (setq org-hide-emphasis-markers t) ; 隐藏 * = / 等标记
+
+  ;; 默认折叠隐藏所有抽屉（PROPERTIES、LOGBOOK、org-gcal 等）
+  (setq org-cycle-hide-drawer-startup t)
+  ;; 在通过 TAB 展开标题节点时，保持抽屉处于折叠状态
+  (add-hook 'org-cycle-hook #'org-cycle-hide-drawers))
+
+;; 彻底隐藏 Org 抽屉与繁琐属性（如 Google 日历 ID、ETag、Roam ID 等）
+(use-package org-tidy
+  :ensure t
+  :after org
+  :hook (org-mode . org-tidy-mode)
+  :config
+  ;; 抽屉隐藏后在标题末尾显示的淡雅小标记（如设为 "" 则完全无痕隐藏）
+  (setq org-tidy-properties-inline-symbol " ♯"))
+
 ;; ------------------------------
 ;; ox-hugo configuratio n
 ;; ------------------------------
