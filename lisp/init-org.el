@@ -21,12 +21,26 @@
 			     '((C . t)
 			       (python . t)))
 ;; ==============================================
-;; org-modern make Org-mode ui perfect
+;; org-modern make Org-mode & Org-agenda UI perfect
 ;; ==============================================
 (use-package org-modern
   :ensure t
+  :custom
+  (org-modern-table nil)
+  (org-modern-todo nil)                 ; 不使用背景胶囊，保持纯文字高亮
+  (org-modern-label-border 0.2)
+  (org-modern-todo-faces
+   '(("TODO"  :foreground "#ea6962" :weight bold)
+     ("DOING" :foreground "#fabd2f" :weight bold)
+     ("WAIT"  :foreground "#82aaff" :weight bold)
+     ("DONE"  :foreground "#a9b665" :weight bold)
+     ("CANC"  :foreground "#928374" :strike-through t)))
+  (org-modern-priority-faces
+   '((?A :foreground "#ea6962" :weight bold)
+     (?B :foreground "#fabd2f" :weight bold)
+     (?C :foreground "#7daea3" :weight bold)))
   :config
-  (setq org-modern-table nil)
+  (set-face-attribute 'org-modern-label nil :height 0.85)
   :hook
   (org-mode . org-modern-mode)
   (org-agenda-finalize . org-modern-agenda))
@@ -246,11 +260,24 @@
          "CANC(c@)")))
 
 (setq org-todo-keyword-faces
-      '(("TODO" . (:foreground "#ff5555" :weight bold))
-        ("DOING" . (:foreground "#ffcc00" :weight bold))
-        ("WAIT" . (:foreground "#82aaff" :weight bold))
-        ("DONE" . (:foreground "#4ade80" :weight bold))
-        ("CANC" . (:foreground "#6c757d" :strike-through t))))
+      '(("TODO"  . (:foreground "#ea6962" :weight bold))
+        ("DOING" . (:foreground "#fabd2f" :weight bold))
+        ("WAIT"  . (:foreground "#82aaff" :weight bold))
+        ("DONE"  . (:foreground "#a9b665" :weight bold))
+        ("CANC"  . (:foreground "#928374" :strike-through t))))
+
+;; ------------------------------
+;; Org Agenda 排版与显示美化
+;; ------------------------------
+(setq org-agenda-prefix-format
+      '((agenda . " %i %-12:c%?-12t% s")
+        (todo   . " %i %-12:c ")
+        (tags   . " %i %-12:c ")
+        (search . " %i %-12:c ")))
+(setq org-agenda-block-separator ?─)
+(setq org-agenda-tags-column -80)
+(setq org-agenda-window-setup 'current-window)
+(setq org-agenda-restore-windows-after-quit t)
 
 ;; ------------------------------
 ;; 代码块渲染增强
